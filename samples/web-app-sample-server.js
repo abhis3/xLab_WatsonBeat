@@ -24,6 +24,9 @@ const logger = log4js.getLogger("testApp");
 const userAttributeManager = require("bluemix-appid").UserAttributeManager;
 const exphbs = require('express-handlebars');
 const path = require('path');
+var FormData = require('form-data');
+var fs = require('fs');
+var request = require('request');
 
 
 ////
@@ -107,7 +110,7 @@ app.get("/popup", (req, res) => {
 // Explicit login endpoint. Will always redirect browser to login widget due to {forceLogin: true}.
 // If forceLogin is set to false redirect to login widget will not occur of already authenticated users.
 app.get(LOGIN_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
-	successRedirect: "/mixcloud/login",
+	successRedirect: "/dashboard",
 	// successRedirect: "/test",
 	forceLogin: true
 }));
@@ -173,24 +176,164 @@ function givePointsAndRenderPage(req, res) {
 
 }
 
+const onGetMixcloudSuccess = function (res, token, filepath) {
+    // Do whatever you need to if the token exists.
+    //redirect
+    var url = "https://api.mixcloud.com/upload/?access_token=";
+    url = url.concat(token);
+
+
+    var formData = {
+        mp3: fs.createReadStream(filepath),
+        name: 'API_Upload3'
+        //my_file: fs.createReadStream(__dirname + '/unicycle.jpg'),
+    }
+
+    var req = request.post({ 'url': url, 'formData': formData }, function (err, resp, body) {
+      if (resp.statusCode == 403) {
+        console.log(resp.statusCode);
+        res.redirect("/mixcloud/failure");
+      } else {
+        console.log(resp.statusCode);
+        res.render('test2');
+      }
+    });
+
+    
+
+    /*
+    var formData = {
+        mp3: filepath,
+        name: 'API Upload',
+        my_file: fs.createReadStream(__dirname + '/unicycle.jpg'),
+    };
+
+    request.post({url:url, formData: formData}, function(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log('Upload successful!  Server responded with:', body);
+    });
+    */
+
+
+
+
+
+    //res.redirect('test2');
+
+    //var form = new FormData();
+
+    //form.append('file', fs.createReadStream(filepath));
+
+};
+const onGetMixcloudFailure = function (error) {
+    // Do any error handling if the token is not found.
+    res.redirect("/mixcloud/login");
+};
+
 
 ////////
-app.get("/testGet", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
-	var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
+app.get("/scUpload", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
+	//var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
 
-	userAttributeManager.getAllAttributes(accessToken).then(function (attributes) {
-	//userAttributeManager.getAttribute(accessToken, "holder2").then(function (attributes) {
-        //console.log(attributes.user.name);
-        //testPostHelper(req, res);
-        //console.log(req);
-        //console.log(attributes)
-        //console.log(req.user.name) //WORKS
-        // console.log(`all attributes ${attributes.holder}`);
-         //console.log(`single attribute[${JSON.stringify(attributes)}]`); //WORKS
-        console.log(`all attributes: ${JSON.stringify(attributes)}`); //WORKS
-        //res.end();
-    });
+	// // //userAttributeManager.getAllAttributes(accessToken).then(function (attributes) { //WORKS
+	// userAttributeManager.getAttribute(accessToken, "access_token_mc").then(function (attributes) { //WORKS
+ // //        //console.log(attributes.user.name);
+ // //        //testPostHelper(req, res);
+ // //        //console.log(req);
+ // //        //console.log(attributes)
+ // //        //console.log(req.user.name) //WORKS
+ // //        // console.log(`all attributes ${attributes.holder}`);
+ //            var temp = attributes["access_token_mc"];
+ //          console.log(`single attribute: ${JSON.stringify(attributes)}`); //WORKS
+ //          console.log(`single attribute: ${JSON.stringify(temp)}`); //<--- Use this
+ // //        //console.log(`all attributes: ${JSON.stringify(attributes)}`); //WORKS
+ //         //res.end();
+ // //        //req.end();
+ //     });
+ // //    //req.end();
+    
+    //var key = "access_token_mc";
+    //getAtt(function(req, res, key) {access_token_mc = attributes});
+
+
+    // getAtt(req, res, "access_token_mcs", (token) => {
+    //     console.log(`got em: ${token}`);
+    //     // res.send(token);
+    // });
+    var filepath = '/Users/asundaresan/Desktop/BeatUpload/Vivaldi-Winter.mp3';
+    scUpload(req, res, "access_token_mc", filepath ,onGetMixcloudSuccess, onGetMixcloudFailure);
+
+
+    //  isValidAtt(req, res, "access_token_mc", (err, data) => {
+    //     if err:
+    //         //redirect
+    //     else:
+
+    //         access_token_mc = getAtt(req, res, "access_token_mc", (token) => {
+    //             console.log(`got em: ${token}`);
+    //             // res.send(token);
+    //         });
+
+
+    //     console.log(`got em: ${flag}`);
+    // });
+
+    //isValidAtt(req, res, "key", function (foundAttribute) { res.redirect("succesPage"); }, function (errorWhileFindingAtt) { res.redirect("failurePage"); });
 });
+
+
+function scUpload(req, res, key, filepath, onSuccess, onFailure) {
+    var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
+
+    //userAttributeManager.getAllAttributes(accessToken).then(function (attributes) { //WORKS
+    userAttributeManager.getAttribute(accessToken, key).then(function (attributes) { //WORKS
+        console.log(`single attribute: ${JSON.stringify(attributes)}`);
+
+        if (onSuccess && typeof onSuccess === 'function') {
+            onSuccess(res, attributes[key], filepath);
+        }
+    }).catch((error) => {
+        //redirect
+        //console.log("Caught error from getAtt():");
+        //console.log(error);
+        //onFailure(error);
+        res.redirect("/mixcloud/login");
+    });
+    //req.end();
+};
+
+
+// function isValidAtt(req, res, att, onSuccess, onFailure) {
+//     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
+
+//     userAttributeManager.getAllAttributes(accessToken).then(function (attributes) { //WORKS
+//     //userAttributeManager.getAttribute(accessToken, key).then(function (attributes) { //WORKS
+//         console.log(`single attribute: ${JSON.stringify(attributes)}`);
+//         var flag = false
+
+//         // Checks to see if attribute is in key set of JSON. Is so, flag = true
+//         for(var k in attributes) {
+//             if (k == att) {
+//                 flag = true;
+//             }
+//         }
+
+//         // if (!flag) { onFailure({message: "Could not fi"}); }
+//         if (!flag) { callback({message: "could not find attribute"}, null); }
+
+
+
+//         if (callback && typeof callback === 'function') {
+
+//             callback(null, attributes[key]); 
+//         }
+//     });
+//     //req.end();
+// };
+
+
 
 
 app.get("/testWriteAtt", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
@@ -201,6 +344,15 @@ app.get("/testWriteAtt", passport.authenticate(WebAppStrategy.STRATEGY_NAME), fu
 		//res.end();
     });
 });
+
+
+function writeAtt(req, res, key, value) {
+    var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
+
+    userAttributeManager.setAttribute(accessToken, key, value).then(function (attributes) {
+        console.log(`stored attributes after call: ${JSON.stringify(attributes)}`);
+    });
+};
 
 
 
@@ -237,12 +389,17 @@ app.get("/mixcloud/auth", function (req, res) {
 
     //console.log(options);
 
-    var req = https.request(options, function(res) {
+    var mcRequest = https.request(options, function(mcResponse) {
 
-        res.on('data', function(chunk) {
+        mcResponse.on('data', function(chunk) {
             //var access_token = (chunk.toString('utf8'));
-            var access_token = (JSON.parse(chunk.toString('utf8')))["access_token"];
-            console.log(`access_token: ${access_token}`);
+            var access_token_mc = (JSON.parse(chunk.toString('utf8')))["access_token"];
+            //console.log(`access_token: ${access_token_mc}`); //WORKS
+
+            writeAtt(req, res, "access_token_mc", access_token_mc);
+
+
+
             //console.log(access_token["access_token"]);
             // var holder = (access_token["access_token"]);
             // console.log(holder);
@@ -254,6 +411,7 @@ app.get("/mixcloud/auth", function (req, res) {
 
             //onsole.log("IN DATA STREAM");
         });
+        //console.log("WTF IS HAPPENING");
 
         // res.on('end', function(res) {
         //     console.log("IN END STREAM");
@@ -264,7 +422,9 @@ app.get("/mixcloud/auth", function (req, res) {
         //     res.send('error: ' + err.message);
         // });
     });
-    req.end();
+    mcRequest.end();
+    //console.log("121212121212121212");
+    //console.log(`access_token: ${access_token}`);
     //res.render('test2');
     res.redirect("/dashboard");
 
@@ -325,6 +485,9 @@ app.get("/track/custom/play", (req, res) => {
     res.render('custom-play');
 })
 
+app.get("/mixcloud/failure", (req, res) => {
+    res.render('mcFailure');
+})
 
 
 
