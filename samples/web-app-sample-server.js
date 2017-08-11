@@ -27,7 +27,7 @@ const path = require('path');
 var FormData = require('form-data');
 var fs = require('fs');
 var request = require('request');
-
+var _ = require('underscore');
 
 ////
 var http = require('http');
@@ -185,7 +185,7 @@ const onGetMixcloudSuccess = function (res, token, filepath) {
 
     var formData = {
         mp3: fs.createReadStream(filepath),
-        name: 'API_Upload3'
+        name: path.basename(filepath, path.extname(filepath))
         //my_file: fs.createReadStream(__dirname + '/unicycle.jpg'),
     }
 
@@ -284,7 +284,7 @@ app.get("/scUpload", passport.authenticate(WebAppStrategy.STRATEGY_NAME), functi
 });
 
 
-function scUpload(req, res, key, filepath, onSuccess, onFailure) {
+const scUpload = function (req, res, key, filepath, onSuccess, onFailure) {
     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
 
     //userAttributeManager.getAllAttributes(accessToken).then(function (attributes) { //WORKS
@@ -500,6 +500,91 @@ app.get("/mixcloud/upload", (req, res) => {
 
 
 
+
+app.get("/scUploadFinal", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
+    getRecentMP3(req, res, "/Users/asundaresan/Desktop/BeatUpload/", scUpload);
+    console.log("GOT HERE");
+   //console.log(fullpath);
+});
+
+
+
+function getRecentMP3(req, res, dir, callback) {
+    // var files = fs.readdirSync(dir);
+
+    // // use underscore for max()
+    // return _.max(files, function (f) {
+    //     var fullpath = path.join(dir, f);
+
+    //     // ctime = creation time is used
+    //     // replace with mtime for modification time
+    //     if (path.extname(fullpath) === '.mp3') {
+    //         console.log(fullpath);
+    //     }
+    //     // console.log("---------");
+    //     // console.log(fullpath);
+    //     // console.log(path.extname(fullpath));
+    //     // console.log("---------");
+    //     // //console.log(fs.statSync(fullpath).ctime);
+
+    //     return fs.statSync(fullpath).ctime;
+    // });
+    var finalPath = "";
+    var finalTime = "";
+
+    fs.readdir(dir,function(err, list){
+        list.forEach(function(file){
+            var fullpath = path.join(dir, file);
+                if (path.extname(fullpath) === '.mp3') {
+                    if (finalPath === "") {
+                        finalPath = fullpath;
+                        finalTime = fs.statSync(fullpath).ctime;
+                    }    
+
+                    if ((fs.statSync(fullpath).ctime) > finalTime) {
+                        finalPath = fullpath;
+                        finalTime = fs.statSync(fullpath).ctime;
+                    }
+
+
+                    // console.log("------------");
+                    // console.log(fullpath);
+                    // stats = fs.statSync(fullpath);
+                    // //console.log(stats.mtime);
+                    // console.log(stats.ctime);
+                    // console.log("------------");
+                }
+        })
+        return callback(req, res, "access_token_mc", finalPath, onGetMixcloudSuccess, onGetMixcloudFailure);
+    })
+
+};
+
+
+// const onGetMixcloudSuccess = function (res, token, filepath) {
+//     // Do whatever you need to if the token exists.
+//     //redirect
+//     var url = "https://api.mixcloud.com/upload/?access_token=";
+//     url = url.concat(token);
+
+
+//     var formData = {
+//         mp3: fs.createReadStream(filepath),
+//         name: 'API_Upload3'
+//         //my_file: fs.createReadStream(__dirname + '/unicycle.jpg'),
+//     }
+
+//     var req = request.post({ 'url': url, 'formData': formData }, function (err, resp, body) {
+//       if (resp.statusCode == 403) {
+//         console.log(resp.statusCode);
+//         res.redirect("/mixcloud/failure");
+//       } else {
+//         console.log(resp.statusCode);
+//         res.render('test2');
+//       }
+//     });
+
+// };
 
 
 
