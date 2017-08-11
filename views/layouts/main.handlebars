@@ -2,15 +2,33 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Example App</title>
+    <link rel = "stylesheet" href = "/stylesheets/main.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<header>
-    Template
-</header>
 
 <body>
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top" id="navbar-default">
+      <div class="container-fluid" id="navbar" >
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container">
 
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/" id="logo">IBM Watson Beat</a>
+          </div>
+          <div class="nav navbar-nav navbar-right">
+            <a href="/login"><div id = "signuprect">
+              <p id="sign-up">Sign Up</p>
+            </div></a>
+            <!-- <a class = "navbar-brand" href="/login" id="sign-up">Sign Up</a> -->
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+  </header>
     <p>{{{body}}}</p>
 
     <p>{{{button}}}</p>

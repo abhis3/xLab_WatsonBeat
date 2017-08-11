@@ -1,0 +1,174 @@
+.tracks{
+  width:310px;
+  height:310px;
+  background-color: gray;
+  text-align:center;
+}
+g.xtick{
+  display: none;
+}
+
+#dropdown1{
+  background-color: blue;
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 60px;
+  left: 280px;
+}
+#dropdown2{
+  background-color: blue;
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 60px;
+  left: 630px;
+}
+#dropdown3{
+  background-color: blue;
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 60px;
+  left: 960px;
+}
+#dropdown4{
+  background-color: blue;
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 60px;
+  left: 1300px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+/*.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 30px;
+    box-shadow: 0px 8px 8px 0px rgba(0,0,0,0);
+    z-index: 1;
+}*/
+
+/* Links inside the dropdown */
+/*.dropdown-content a {
+    color: black;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+}*/
+
+/* Change color of dropdown links on hover */
+/*.dropdown-content a:hover {background-color: #f1f1f1}*/
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+/*.show {display:block;}*/
+
+#pageContainer{
+  font-family: "HelvNeue Light for IBM";
+  background: white;
+  /*height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;*/
+}
+
+#containerfortracks{
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+}
+
+#intro{
+  height: 114px;
+  width: 887.91px;
+  left: 35%;
+  color: #5A6872;
+  font-family: "HelvNeue Light for IBM";
+  font-size: 47px;
+  line-height: 57px;
+  text-align: center;
+  max-width: 100%;
+  position: fixed;
+  top:45%;
+  margin-top: -100px;
+  margin-left: -200px;
+}
+
+#progressbar{
+  padding-top: 5%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#yourProjectContent{
+  padding-top: 5%;
+  height: 100%;
+  width: 100%;
+  color: #5A6872;
+  font-family: "HelvNeue Light for IBM";
+  font-size: 29px;
+  line-height: 35px;
+  text-align: center;
+}
+
+#topPadding{
+  padding-top: 15%;
+}
+
+#profileimg{
+  padding-left: 25%;
+}
+
+#sideProf{
+  background-color: white;
+}
+
+#nameOfUser{
+  padding-left: 15%;
+}
+
+#YourProjectsLabel{
+  	height: 36px;
+    width: 117px;
+    color: #2073B8;
+    font-family: "HelvNeue Medium for IBM";
+    font-size: 16px;
+    line-height: 36px;
+    padding-left: 5%;
+}
+
+#welcome{
+  /*height: 47px;	width: 859px;	color: #5A6872;	font-family: "HelvNeue Light for IBM";	font-size: 47px;	line-height: 56px;	text-align: center;*/
+  color: #5A6872;
+  font-family: "HelvNeue Light for IBM";
+  font-size: 47px;
+  line-height: 56px;
+  text-align: center;
+  height: 47px;
+  width: 100%;
+  position: fixed;
+  top:35%;
+  left: 45%;
+  margin-top: -100px;
+  margin-left: -200px;
+}
+
+#signUp{
+    top:35%;
+    max-width: 1000px;
+    margin: auto;
+    left: 1%;
+    right: 1%;
+    position: absolute;
+}
