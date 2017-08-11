@@ -561,6 +561,181 @@ function getRecentMP3(req, res, dir, callback) {
 };
 
 
+
+
+app.get("/track/custom/generate", function(req, res){
+    getINIandTrack(req, res, "/Users/asundaresan/Desktop/MIDI/", "/Users/asundaresan/Desktop/INI/", getTrack, connectToWatsonBeat);
+    console.log("GOT HERE");
+   //console.log(fullpath);
+});
+
+
+
+function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallback) {
+
+    var finalPathINI = "";
+    var finalTime = "";
+
+    fs.readdir(dirINI,function(err, list){
+        list.forEach(function(file){
+            var fullpath = path.join(dirINI, file);
+                if (path.extname(fullpath) === '.ini') {
+                    if (finalPathINI === "") {
+                        finalPathINI = fullpath;
+                        finalTime = fs.statSync(fullpath).ctime;
+                    }    
+
+                    if ((fs.statSync(fullpath).ctime) > finalTime) {
+                        finalPathINI = fullpath;
+                        finalTime = fs.statSync(fullpath).ctime;
+                    }
+
+
+                    // console.log("------------");
+                    // console.log(finalPathINI);
+                    // // stats = fs.statSync(fullpath);
+                    // // //console.log(stats.mtime);
+                    // // console.log(stats.ctime);
+                    // // console.log("------------");
+                }
+        })
+        return trackCallback(req, res, dirTrack, finalPathINI, watsonCallback);
+    })
+
+};
+
+
+
+const getTrack = function(req, res, dirTrack, pathINI, watsonCallback) {
+
+    var finalPathTrack = "";
+    var finalTime = "";
+    //Pick a random MIDI .txt file of the 8 available for the demo
+    var random = Math.floor(Math.random() * (9));
+    var count = 0;
+
+    fs.readdir(dirTrack,function(err, list){
+        list.forEach(function(file){
+            var fullpath = path.join(dirTrack, file);
+                if (path.extname(fullpath) === '.txt') {
+                    if (finalPathTrack === "") {
+                        finalPathTrack = fullpath;
+                        finalTime = fs.statSync(fullpath).ctime;
+                    }    
+
+                    if (count === random) {
+                        finalPathTrack = fullpath;
+                        finalTime = fs.statSync(fullpath).ctime;
+                    } 
+
+
+                    count = count + 1;
+                    // console.log("------------");
+                    // console.log(finalPathTrack);
+                    // // stats = fs.statSync(fullpath);
+                    // // //console.log(stats.mtime);
+                    // // console.log(stats.ctime);
+                    // console.log("------------");
+                }
+        })
+        return watsonCallback(req, res, finalPathTrack, pathINI);
+    })
+
+};
+
+
+const connectToWatsonBeat = function(req, res, pathTrack, pathINI) {
+
+    console.log("------------");
+    console.log(pathTrack);
+    console.log(pathINI);
+    console.log("------------");
+
+    //var url = 'http://127.0.0.1:3000/'
+    var url = 'http://arlab053.austin.ibm.com:1025/'
+
+    var formData = {
+        myFile: fs.createReadStream(pathTrack),
+        iniFile: fs.createReadStream(pathINI)
+    }
+
+    var header = {
+      'User-Agent':'Electron',
+      'range':'bytes=100-',
+    }
+
+    var respStream = request.post({url:url, headers:header, formData: formData})
+
+
+    respStream.on('error', function(err) {
+        console.log("Error: cannot connect to server: ", err)
+        alert("Error: cannot connect to server")
+        // go back to home page
+        res.redirect("/track/");
+    })
+
+    respStream.on('response', function(response) {
+        respStream.pipe(ws)
+        console.log("I am here")
+    })
+    
+    respStream.on('end', function () {
+        console.log("piping done....");
+        console.log(".mp3 is saved????");
+        //moodSection.displayAudioElementsAndPlay(mp3,true)
+        res.redirect("/track/custom/play");
+    })
+
+
+
+    console.log("------------");
+    console.log(pathTrack);
+    console.log(pathINI);
+    console.log("------------");
+    //res.render("test2");
+}
+
+
+    // var req = request.post({ 'url': url, 'formData': formData }, function (err, resp, body) {
+    //   if (resp.statusCode == 403) {
+    //     console.log(resp.statusCode);
+    //     res.redirect("/mixcloud/failure");
+    //   } else {
+    //     console.log(resp.statusCode);
+    //     res.render('test2');
+    //   }
+    // });
+
+
+
+
+
+
+
+
+
+
+// const scUpload = function (req, res, key, filepath, onSuccess, onFailure) {
+//     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
+
+//     //userAttributeManager.getAllAttributes(accessToken).then(function (attributes) { //WORKS
+//     userAttributeManager.getAttribute(accessToken, key).then(function (attributes) { //WORKS
+//         console.log(`single attribute: ${JSON.stringify(attributes)}`);
+
+//         if (onSuccess && typeof onSuccess === 'function') {
+//             onSuccess(res, attributes[key], filepath);
+//         }
+//     }).catch((error) => {
+//         //redirect
+//         //console.log("Caught error from getAtt():");
+//         //console.log(error);
+//         //onFailure(error);
+//         res.redirect("/mixcloud/login");
+//     });
+//     //req.end();
+// };
+
+
 // const onGetMixcloudSuccess = function (res, token, filepath) {
 //     // Do whatever you need to if the token exists.
 //     //redirect
@@ -570,7 +745,7 @@ function getRecentMP3(req, res, dir, callback) {
 
 //     var formData = {
 //         mp3: fs.createReadStream(filepath),
-//         name: 'API_Upload3'
+//         name: path.basename(filepath, path.extname(filepath))
 //         //my_file: fs.createReadStream(__dirname + '/unicycle.jpg'),
 //     }
 
@@ -585,6 +760,14 @@ function getRecentMP3(req, res, dir, callback) {
 //     });
 
 // };
+// const onGetMixcloudFailure = function (error) {
+//     // Do any error handling if the token is not found.
+//     res.redirect("/mixcloud/login");
+// };
+
+
+
+
 
 
 
