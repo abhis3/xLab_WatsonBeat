@@ -1,5 +1,5 @@
 {
-  "name": "bluemix-appid",
+  "name": "bluemix-appid-2",
   "version": "1.1.1",
   "description": "Node.js SDK for the IBM Bluemix App ID service",
   "main": "lib/appid-sdk.js",
@@ -26,6 +26,7 @@
     "proxyquire": "^1.7.11"
   },
   "dependencies": {
+    "bluemix-appid": "^1.1.1",
     "body-parser": "^1.17.2",
     "carbon-components": "^7.17.1",
     "connect-flash": "^0.1.1",

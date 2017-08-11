@@ -18,6 +18,7 @@ function settime(){
     .attr("y",280)
     .style("font-size", "12px")
     .text(text);
+
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
@@ -146,7 +147,7 @@ window.onload = function() {
     .style("font-size", "12px")
     .text(function(d){return 'Low Energy'});
 
-  Plotly.d3.selectAll("g.xtick").remove();
+  // Plotly.d3.selectAll("g.xtick")();
 
   myPlot.on('plotly_hover', function(data){
     selectedInfo = data.points[0];

@@ -4,6 +4,9 @@
   background-color: gray;
   text-align:center;
 }
+g.xtick{
+  display: none;
+}
 
 #dropdown1{
   background-color: blue;
