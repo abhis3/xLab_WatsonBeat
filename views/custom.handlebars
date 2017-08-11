@@ -1,6 +1,150 @@
-<body>
-GENERATE CUSTOM TRACK. PUT GRAPH HERE. USER CHOOSES MELODY AND OTHER THINGS AS WELL.
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create A New Track</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" href="../css/main.css">
+    <link rel = "stylesheet" href="../css/carbon.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../js/createTrack.js" type="text/javascript"></script>
+    <script async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"/>
+    <script async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"/>
+    <script src="../node_modules/carbon-components/scripts/carbon-components.min.js" type="text/javascript"></script>
 
-<a href = "/"><button type="button">Home Page</button>
-<a href = "play"><button type="button">Generate/Play Track</button>
+  </head>
+  <body>
+    <!-- Code for header -->
+    <!-- Unified Header -->
+    <div data-unified-header class="bx--unified-header bx--unified-header--apps" tabindex="0">
+
+      <!-- Global Header -->
+      <header role="banner" class="bx--global-header">
+        <div class="bx--global-header__left-container">
+          <div class="bx--left-nav__trigger bx--left-nav__trigger--apps" data-left-nav-toggle="open" tabindex="0">
+            <div class="bx--left-nav__trigger--btn">
+              <span></span>
+            </div>
+          </div>
+          <div class="bx--global-header__left-nav bx--left-nav--inactive" data-left-nav-container aria-expanded="false">
+            <div class="bx--left-nav__trigger"></div>
+            <div id="sideProf">
+              <img id= "profileimg" src = "../images/Veronica.png" width="65%" height="55%"></img>
+              <h3 id = "nameOfUser" class= "bx--dropdown-text" >Veronica Lindsey</h3>
+              <a href="../html/yourProjects.html"><h3 id="YourProjectsLabel">Your Projects</h3></a>
+            </div>
+            <nav class="bx--left-nav" data-left-nav role="navigation" aria-label="Left Navigation">
+              <ul data-left-nav-sections class="bx--left-nav__sections">
+              </ul>
+              <!-- APPLICATIONS MENU -->
+              <ul role="menubar" class="bx--left-nav__main-nav" data-left-nav-list="apps" aria-hidden="false">
+                <li role="menuitem" class="bx--main-nav__parent-item" data-left-nav-item tabindex="0">
+                  <a class="bx--parent-item__link" href="#" title="Item" tabindex="-1" aria-haspopup="true" data-left-nav-item-link>
+                    <svg class="bx--parent-item__link--taxonomy-icon">
+                      <use xlink:href="/carbon-icons/bluemix-icons.svg#icon--apps"></use>
+                    </svg>
+                    Track 1
+                  </a>
+                </li>
+                <li role="menuitem" class="bx--main-nav__parent-item" data-left-nav-item tabindex="0">
+                  <a class="bx--parent-item__link" href="#" title="Item" tabindex="-1" data-left-nav-item-link>
+                    <svg class="bx--parent-item__link--taxonomy-icon">
+                      <use xlink:href="/carbon-icons/bluemix-icons.svg#icon--apps"></use>
+                    </svg>
+                    Track 2
+                  </a>
+                <li role="menuitem" class="bx--main-nav__parent-item" data-left-nav-item tabindex="0">
+                  <a class="bx--parent-item__link" href="#" title="Create" tabindex="-1" data-left-nav-item-link>
+                    <svg class="bx--parent-item__link--taxonomy-icon">
+                      <use xlink:href="/carbon-icons/bluemix-icons.svg#icon--apps"></use>
+                    </svg>
+                    <!-- <svg padding-right = "5px" width="24" height="24" viewBox="0 0 24 24" fill-rule="evenodd"><path d="M13 6h-2v5H6v2h5v5h2v-5h5v-2h-5z"></path><path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2zm0-2C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0z"></path></svg> -->
+                    Create New Track
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="bx--global-header__title">
+            <a href="#" class="bx--global-header__title--logo" tabindex="0">
+              <h1 class="bx--logo__text">
+                IBM <span class="bx--logo__text--bold">Watson Beat</span>
+              </h1>
+            </a>
+            <h4 class="bx--global-header__title--current-page">Welcome</h4>
+          </div>
+          </div>
+      </header>
+    </div>
+    <!-- End Unified Header -->
+
+      <div id= "progressbar">
+        <ul data-progress data-progress-current class="bx--progress" style = "padding-left: 300px; width : 1500px">
+          <li class="bx--progress-step bx--progress-step--current">
+            <svg>
+              <circle cx="12" cy="12" r="12"></circle>
+              <circle cx="12" cy="12" r="12"></circle>
+            </svg>
+            <p class="bx--progress-label">Choose Input</p>
+            <span class="bx--progress-line"></span>
+          </li>
+          <li class="bx--progress-step bx--progress-step--current">
+            <svg>
+              <circle cx="12" cy="12" r="12"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+            </svg>
+            <p class="bx--progress-label">Customize Track</p>
+            <span class="bx--progress-line"></span>
+          </li>
+          <li class="bx--progress-step bx--progress-step--incomplete">
+            <svg>
+              <circle cx="12" cy="12" r="12"></circle>
+            </svg>
+            <p class="bx--progress-label">Save & Export</p>
+            <span class="bx--progress-line"></span>
+          </li>
+        </ul>
+    </div>
+    <!-- //wrapper w dropdown, wrapper position relative, dropdown position absolute -->
+
+    <div id = pageContainer>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="00:00" id="songlength" style = " font-size: 15px; ">
+        <button onclick="settime()" id="settime">Set Song Length</button>
+      </div>
+      <div id = "wrappergraph" style="position: relative">
+        <div id="graph"></div>
+        <select id="dropdown1" onchange="myFunction(this);">
+          <option selected value="Please Select">Select Mood</option>
+          <option value="reggaepop">Reggae Pop</option>
+          <option value="popfunk">Pop Funk</option>
+          <option value="chill">Chill</option>
+        </select>
+        <select id="dropdown2" onchange="myFunction2(this);">
+          <option selected value="Please Select">Select Mood</option>
+          <option value="reggaepop">Reggae Pop</option>
+          <option value="popfunk">Pop Funk</option>
+          <option value="chill">Chill</option>
+        </select>
+        <select id="dropdown3" onchange="myFunction3(this);">
+          <option selected value="Please Select">Select Mood</option>
+          <option value="reggaepop">Reggae Pop</option>
+          <option value="popfunk">Pop Funk</option>
+          <option value="chill">Chill</option>
+        </select>
+        <select id="dropdown4" onchange="myFunction4(this);">
+          <option selected value="Please Select">Select Mood</option>
+          <option value="reggaepop">Reggae Pop</option>
+          <option value="popfunk">Pop Funk</option>
+          <option value="chill">Chill</option>
+        </select>
+
+      </div>
+      <a href = "play"><button id="generate">Watson Magic Time</button></a>
+      <a href = "/"><button type="button">Home Page</button>
+    </div>
+  </body>
+</head>
+</html>
