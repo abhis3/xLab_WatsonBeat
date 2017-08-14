@@ -1,4 +1,11 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel = "stylesheet" href = "/stylesheets/main.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 <body>
   <header>
     <nav class="navbar navbar-default navbar-fixed-top" id="navbar-default">
@@ -15,20 +22,42 @@
 
           </div>
           <div class="nav navbar-nav navbar-right">
-            <a href = "/"><button type="button">Home Page</button>
-            <a href = "/mixcloud/login"><button type="button">Login to SoundCloud'</button>
-
-            <a href = "/track/cognitive/"><button type="button">Cognitive Experience</button>
-            <a href = "/track/custom/"><button type="button">Customize</button>
-
-
-            <a href = "/testWriteAtt"><button type="button">Write 123 to 'holder'</button>
-            <a href = "/scUpload"><button type="button">Upload to SC</button>
+            <h2 id = username>{{name}}</h2>
           </div>
 
         </div>
       </div><!-- /.container-fluid -->
     </nav>
   </header>
+
+
+  <div class="container-fluid" style = "padding-top: 200px;" id = "belowheader">
+      <div class="container">
+        <div class="row" id="top">
+            <div class="col-md-9">
+              <h1 class="title" id="welcome">Watson <span style= "color: #FFA573"> Beat</a></h1>
+                  <h2 class="subhead" id="welcome-description">Tell us about your project and Watson will compose an original tack based off of your needs!</h2>
+            </div>
+            <div class="col-md-3">
+              <!-- <img src="imgs/group.svg" alt="group-icon"> -->
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12" style="display: flex; margin-top: 40px;">
+
+                <a href = "/"><button type="button">Home Page</button>
+                <a href = "/mixcloud/login"><button type="button">Login to SoundCloud'</button>
+
+                <a href = "/track/cognitive/"><button type="button">Cognitive Experience</button>
+                <a href = "/track/custom/"><button type="button">Customize</button>
+
+
+                <a href = "/testWriteAtt"><button type="button">Write 123 to 'holder'</button>
+                <a href = "/scUpload"><button type="button">Upload to SC</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 </body>

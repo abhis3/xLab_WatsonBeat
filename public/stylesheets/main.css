@@ -26,4 +26,5 @@
   background-image: url("/images/Alex da kid purple.png");
 }
 /*Dashboard Page*/
-#dashboard-label {	height: 33px;	width: 61px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 33px;}
+#dashboard-label {	height: 33px;	width: 61px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 33px; justify-content: center;}
+#username{margin-top: 23px; height: 23.2px;	width: 150px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 23px; justify-content: center;}

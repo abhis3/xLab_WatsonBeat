@@ -18,13 +18,22 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="/" id="logo">IBM Watson <span style= "color: #FFA573"> Beat</a>
           </div>
-          <div class="nav navbar-nav navbar-right">
-            <a href="/login"><div id = "signuprect">
-              <p id="sign-up">Sign Up</p>
-            </div></a>
+          {{#if isLoggedIn}}
+            <div class = "nav navbar-nav navbar-center" style = "display: flex; margin-left: 300px;">
+              <a href = "/dashboard"><div><h2 id ="dashboard-label" type = "button">Dashboard</h2></div></a>
+              <a href = "/dashboard"><div><h2 id ="dashboard-label" type = "button" style="padding-left: 48px;">About</h2></div></a>
+            </div>
+            <div class="nav navbar-nav navbar-right">
+              <h2 id=username>{{name}}</h2>
+            </div>
+          {{else}}
+            <div class="nav navbar-nav navbar-right">
+              <a href="/login"><div id = "signuprect">
+                <p id="sign-up">Sign Up</p>
+              </div></a>
             <!-- <a class = "navbar-brand" href="/login" id="sign-up">Sign Up</a> -->
-          </div>
-
+            </div>
+          {{/if}}
         </div>
       </div><!-- /.container-fluid -->
     </nav>
