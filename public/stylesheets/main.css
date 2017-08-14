@@ -17,11 +17,13 @@
 #sign-up { padding-left: 25px; padding-top: 10px; height: 33px; width: 99px; height: 15px;	width: 100px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	line-height: 15px;}
 
 /*Landing Page*/
-#welcome {	height: 143px;	width: 692px;	color: #5A6872;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 143px;}
-#welcome-description{	height: 72px;	width: 813px;	color: #5A6872;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: 600;	line-height: 36px;}
-#get-startedbox{	height: 50px;	width: 183px;	border-radius: 100px;	background-color: #6969D4;	box-shadow: 0 2px 5px 0 #9B9B9B;}
-#get-started {	padding-top: 13px; height: 23.2px;	width: 183px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
-#learn-more{	margin-left: 40px; padding-bottom: 13px; height: 25px;	width: 299px;	color: #3C3C73;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 25px; background: white;}
-
+#welcome {	height: 143px;	width: 692px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 143px;}
+#welcome-description{	height: 72px;	width: 813px;		color: #FFFFFF;font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: 600;	line-height: 36px;}
+#get-startedbox{	height: 50px;	width: 183px;	border-radius: 100px;	background-color: #FFFFFF;	box-shadow: 0 2px 5px 0 #9B9B9B;}
+#get-started {	padding-top: 13px; height: 23.2px;	width: 183px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
+#learn-more{	margin-left: 40px; padding-bottom: 13px; height: 25px;	width: 299px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 25px;}
+#belowheader{
+  background-image: url("/images/Alex da kid purple.png");
+}
 /*Dashboard Page*/
 #dashboard-label {	height: 33px;	width: 61px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 33px;}
