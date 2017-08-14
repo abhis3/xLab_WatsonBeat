@@ -8,6 +8,10 @@ g.xtick{
   display: none;
 }
 
+#formfortime{
+  margin-top: 70px;
+}
+
 #dropdown1{
   background-color: blue;
   color: white;

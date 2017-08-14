@@ -22,3 +22,6 @@
 #get-startedbox{	height: 50px;	width: 183px;	border-radius: 100px;	background-color: #6969D4;	box-shadow: 0 2px 5px 0 #9B9B9B;}
 #get-started {	padding-top: 13px; height: 23.2px;	width: 183px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
 #learn-more{	margin-left: 40px; padding-bottom: 13px; height: 25px;	width: 299px;	color: #3C3C73;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 25px; background: white;}
+
+/*Dashboard Page*/
+#dashboard-label {	height: 33px;	width: 61px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 33px;}

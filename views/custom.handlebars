@@ -17,7 +17,7 @@
   <body>
 
     <div id = pageContainer>
-      <div class="form-group">
+      <div class="form-group" id="formfortime" >
         <input type="text" class="form-control" placeholder="00:00" id="songlength" style = " font-size: 15px; ">
         <button onclick="settime()" id="settime">Set Song Length</button>
       </div>
@@ -29,7 +29,7 @@
           <option value="popfunk">Pop Funk</option>
           <option value="chill">Chill</option>
         </select>
-        <select id="dropdown2" onchange="myFunction2(this);">
+        <!-- <select id="dropdown2" onchange="myFunction2(this);">
           <option selected value="Please Select">Select Mood</option>
           <option value="reggaepop">Reggae Pop</option>
           <option value="popfunk">Pop Funk</option>
@@ -46,7 +46,7 @@
           <option value="reggaepop">Reggae Pop</option>
           <option value="popfunk">Pop Funk</option>
           <option value="chill">Chill</option>
-        </select>
+        </select> -->
 
       </div>
       <a href = "generate"><button id="generate">Watson Magic Time</button></a>

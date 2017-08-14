@@ -1,11 +1,11 @@
-var section = 0; var section4= 0; var mood1=""; var mood2 = ""; var mood3 = ""; var mood4 = "";
+var mood1=""; var mood2 = ""; var mood3 = ""; var mood4 = ""; var totsecs = 0;
 function settime(){
   var text = document.getElementById("songlength").value;
   var res = text.split(":");
   var mins = parseInt(res[0]);
   var secs = parseInt(res[1]);
-  var totsecs = (mins * 60) + secs;
-  section = totsecs/4;
+  totsecs = (mins * 60) + secs;
+  var section = totsecs/4;
   var section2 = section + section ;
   var section3 = section2 + section;
   section4 = totsecs - section3;
@@ -66,24 +66,24 @@ function myFunction(selected) {
 
 }
 
-function myFunction2(selected) {
-  mood2 = selected.options[selected.selectedIndex].value;
-  console.log(mood2);
-    // document.getElementById("myDropdown2").classList.toggle("show");
-
-}
-function myFunction3(selected) {
-  mood3 = selected.options[selected.selectedIndex].value;
-  console.log(mood3);
-    // document.getElementById("myDropdown3").classList.toggle("show");
-
-}
-function myFunction4(selected) {
-  mood4 = selected.options[selected.selectedIndex].value;
-  console.log(mood4);
-    // document.getElementById("myDropdown4").classList.toggle("show");
-
-}
+// function myFunction2(selected) {
+//   mood2 = selected.options[selected.selectedIndex].value;
+//   console.log(mood2);
+//     // document.getElementById("myDropdown2").classList.toggle("show");
+//
+// }
+// function myFunction3(selected) {
+//   mood3 = selected.options[selected.selectedIndex].value;
+//   console.log(mood3);
+//     // document.getElementById("myDropdown3").classList.toggle("show");
+//
+// }
+// function myFunction4(selected) {
+//   mood4 = selected.options[selected.selectedIndex].value;
+//   console.log(mood4);
+//     // document.getElementById("myDropdown4").classList.toggle("show");
+//
+// }
 
 window.onload = function() {
   Plotly.plot('graph', );
@@ -212,6 +212,8 @@ window.onload = function() {
   }
 
   watsonmagic.onclick = function(){
+    var secs = Math.floor(totsecs/4);
+    var secs4 = totsecs-(3*secs);
 
     var moodchange = [
       "\r\n",
@@ -220,7 +222,7 @@ window.onload = function() {
       "\r\n",
       "\r\n#movement settings",
       "\r\nmovementId: 0",
-      "\r\nmovementDuration: "+ section,
+      "\r\nmovementDuration: 50",
       "\r\n",
       "\r\n",
       "\r\n#WB Levers",
@@ -229,67 +231,69 @@ window.onload = function() {
       "\r\ncomplexity: super_simple",
       "\r\n",
       "\r\n",
-      "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(0)+"', durationInMeasures:'4', slope:'gradual or steep', direction: '"+setdirection(0)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(1)+"', durationInMeasures: '8 or 12', slope:'gradual or steep', direction: '"+setdirection(1)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(0)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(0)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(1)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(1)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(2)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(2)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(3)+"', duration: '"+secs4+"', slope:'gradual or steep', direction: '"+setdirection(3)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
       "\r\n",
       "\r\n#end movement",
-      "\r\n",
-      "\r\n",
-      "\r\n",
-      "\r\n#movement settings",
-      "\r\nmovementId: 1",
-      "\r\nmovementDuration: "+ section,
-      "\r\n",
-      "\r\n",
-      "\r\n#WB Levers",
-      "\r\nmood: "+ mood2,
-      "\r\nrhythmSpeed: medium",
-      "\r\ncomplexity: super_simple",
-      "\r\n",
-      "\r\n",
-      "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(1)+"', durationInMeasures:'4', slope:'gradual or steep', direction: '"+setdirection(1)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(2)+"', durationInMeasures: '8 or 12', slope:'gradual or steep', direction: '"+setdirection(2)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      "\r\n",
-      "\r\n#end movement",
-      "\r\n",
-      "\r\n",
-      "\r\n",
-      "\r\n#movement settings",
-      "\r\nmovementId: 2",
-      "\r\nmovementDuration: "+ section,
-      "\r\n",
-      "\r\n",
-      "\r\n#WB Levers",
-      "\r\nmood: "+ mood3,
-      "\r\nrhythmSpeed: medium",
-      "\r\ncomplexity: super_simple",
-      "\r\n",
-      "\r\n",
-      "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(2)+"', durationInMeasures:'4', slope:'gradual or steep', direction: '"+setdirection(2)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(3)+"', durationInMeasures: '8 or 12', slope:'gradual or steep', direction: '"+setdirection(3)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      "\r\n",
-      "\r\n#end movement",
-      "\r\n",
-      "\r\n",
-      "\r\n",
-      "\r\n#movement settings",
-      "\r\nmovementId: 3",
-      "\r\nmovementDuration: "+ section4,
-      "\r\n",
-      "\r\n",
-      "\r\n#WB Levers",
-      "\r\nmood: "+ mood4,
-      "\r\nrhythmSpeed: medium",
-      "\r\ncomplexity: super_simple",
-      "\r\n",
-      "\r\n",
-      "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(3)+"', durationInMeasures:'4', slope:'gradual or steep', direction: '"+setdirection(3)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(4)+"', durationInMeasures: '8 or 12', slope:'gradual or steep', direction: '"+setdirection(4)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      "\r\n",
-      "\r\n#end movement",
-      "\r\n",
-      "\r\n",
       "\r\n"]
+      // "\r\n",
+      // "\r\n",
+      // "\r\n#movement settings",
+      // "\r\nmovementId: 1",
+      // "\r\nmovementDuration: 50",
+      // "\r\n",
+      // "\r\n",
+      // "\r\n#WB Levers",
+      // "\r\nmood: "+ mood2,
+      // "\r\nrhythmSpeed: medium",
+      // "\r\ncomplexity: super_simple",
+      // "\r\n",
+      // "\r\n",
+      // "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(1)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(1)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      // "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(2)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(2)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      // "\r\n",
+      // "\r\n#end movement",
+      // "\r\n",
+      // "\r\n",
+      // "\r\n",
+      // "\r\n#movement settings",
+      // "\r\nmovementId: 2",
+      // "\r\nmovementDuration: 50",
+      // "\r\n",
+      // "\r\n",
+      // "\r\n#WB Levers",
+      // "\r\nmood: "+ mood3,
+      // "\r\nrhythmSpeed: medium",
+      // "\r\ncomplexity: super_simple",
+      // "\r\n",
+      // "\r\n",
+      // "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(2)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(2)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      // "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(3)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(3)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      // "\r\n",
+      // "\r\n#end movement",
+      // "\r\n",
+      // "\r\n",
+      // "\r\n",
+      // "\r\n#movement settings",
+      // "\r\nmovementId: 3",
+      // "\r\nmovementDuration: 50",
+      // "\r\n",
+      // "\r\n",
+      // "\r\n#WB Levers",
+      // "\r\nmood: "+ mood4,
+      // "\r\nrhythmSpeed: medium",
+      // "\r\ncomplexity: super_simple",
+      // "\r\n",
+      // "\r\n",
+      // "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(3)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(3)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      // "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(4)+"', duration: '"+secs4+"', slope:'gradual or steep', direction: '"+setdirection(4)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
+      // "\r\n",
+      // "\r\n#end movement",
+      // "\r\n",
+      // "\r\n",
+      // "\r\n"]
     var blob = new Blob(moodchange, {type: "text/plain;charset=utf-8"});
     saveAs(blob, "moods.ini");
 
