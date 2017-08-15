@@ -10,6 +10,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+ //
 
 const express = require("express");
 const session = require("express-session");
@@ -35,7 +36,6 @@ var https = require('https');
 ////
 
 var config = require('../config');
-var isLoggedin = false;
 
 // Below URLs will be used for App ID OAuth flows
 const LANDING_PAGE_URL = "/home";
@@ -57,9 +57,9 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 // environments. See https://github.com/expressjs/session for
 // additional documentation
 app.use(session({
-	secret: "123456",
-	resave: true,
-	saveUninitialized: true
+    secret: "123456",
+    resave: true,
+    saveUninitialized: true
 }));
 
 // Use static resources from /samples directory
@@ -85,11 +85,11 @@ passport.use(new WebAppStrategy({
 // for authenticated session persistence accross HTTP requests. See passportjs docs
 // for additional information http://passportjs.org/docs
 passport.serializeUser(function(user, cb) {
-	cb(null, user);
+    cb(null, user);
 });
 
 passport.deserializeUser(function(obj, cb) {
-	cb(null, obj);
+    cb(null, obj);
 });
 
 app.get("/", (req, res) => {
@@ -106,30 +106,30 @@ app.get("/", (req, res) => {
 });
 
 app.get("/authed/main", (req, res) => {
-	res.render('test2');
+    res.render('test2');
 })
 
 app.get("/popup", (req, res) => {
-	console.log("Dis good stuff boi");
+    console.log("Dis good stuff boi");
 })
 
 // app.get("/test", (req, res) => {
-// 	res.send("TESTTTTT");
+//  res.send("TESTTTTT");
 // });
 
 // Explicit login endpoint. Will always redirect browser to login widget due to {forceLogin: true}.
 // If forceLogin is set to false redirect to login widget will not occur of already authenticated users.
 app.get(LOGIN_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
-	successRedirect: "/dashboard",
-	// successRedirect: "/test",
-	forceLogin: true
+    successRedirect: "/dashboard",
+    // successRedirect: "/test",
+    forceLogin: true
 }));
 
 // Explicit anonymous login endpoint. Will always redirect browser for anonymous login due to forceLogin: true
 app.get(LOGIN_ANON_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
-	successRedirect: LANDING_PAGE_URL,
-	allowAnonymousLogin: true,
-	allowCreateNewAnonymousUser: true
+    successRedirect: LANDING_PAGE_URL,
+    allowAnonymousLogin: true,
+    allowCreateNewAnonymousUser: true
 }));
 
 // Callback to finish the authorization process. Will retrieve access and identity tokens/
@@ -141,8 +141,8 @@ app.get(CALLBACK_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME));
 
 // Logout endpoint. Clears authentication information from session
 app.get(LOGOUT_URL, function(req, res){
-	WebAppStrategy.logout(req);
-	res.redirect(LANDING_PAGE_URL);
+    WebAppStrategy.logout(req);
+    res.redirect(LANDING_PAGE_URL);
 });
 
 // Protected area. If current user is not authenticated - redirect to the login widget will be returned.
@@ -158,14 +158,14 @@ app.get("/dashboard", passport.authenticate(WebAppStrategy.STRATEGY_NAME), funct
 });
 
 app.post("/rop/login/submit", bodyParser.urlencoded({extended: false}), passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
-	successRedirect: LANDING_PAGE_URL,
-	failureRedirect: ROP_LOGIN_PAGE_URL,
-	failureFlash : true // allow flash messages
+    successRedirect: LANDING_PAGE_URL,
+    failureRedirect: ROP_LOGIN_PAGE_URL,
+    failureFlash : true // allow flash messages
 }));
 
 app.get(ROP_LOGIN_PAGE_URL, function(req, res) {
-	// render the page and pass in any flash data if it exists
-	res.render("login.ejs", { message: req.flash('error') });
+    // render the page and pass in any flash data if it exists
+    res.render("login.ejs", { message: req.flash('error') });
 });
 
 
@@ -210,7 +210,8 @@ const onGetMixcloudSuccess = function (res, token, filepath) {
         res.redirect("/mixcloud/failure");
       } else {
         console.log(resp.statusCode);
-        res.render('test2');
+        console.log("Did mixCloud finally")
+        res.redirect('/dashboard');
       }
     });
 
@@ -250,10 +251,10 @@ const onGetMixcloudFailure = function (error) {
 
 ////////
 app.get("/scUpload", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
-	//var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
+    //var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
 
-	// // //userAttributeManager.getAllAttributes(accessToken).then(function (attributes) { //WORKS
-	// userAttributeManager.getAttribute(accessToken, "access_token_mc").then(function (attributes) { //WORKS
+    // // //userAttributeManager.getAllAttributes(accessToken).then(function (attributes) { //WORKS
+    // userAttributeManager.getAttribute(accessToken, "access_token_mc").then(function (attributes) { //WORKS
  // //        //console.log(attributes.user.name);
  // //        //testPostHelper(req, res);
  // //        //console.log(req);
@@ -352,11 +353,11 @@ const scUpload = function (req, res, key, filepath, onSuccess, onFailure) {
 
 
 app.get("/testWriteAtt", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
-	var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
+    var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
 
-	userAttributeManager.setAttribute(accessToken, "holder2", "456").then(function (attributes) {
-		console.log(`stored attributes after call: ${JSON.stringify(attributes)}`);
-		//res.end();
+    userAttributeManager.setAttribute(accessToken, "holder2", "456").then(function (attributes) {
+        console.log(`stored attributes after call: ${JSON.stringify(attributes)}`);
+        //res.end();
     });
 });
 
@@ -517,7 +518,7 @@ app.get("/mixcloud/upload", (req, res) => {
 
 
 app.get("/scUploadFinal", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
-    getRecentMP3(req, res, "/Users/asundaresan/Desktop/BeatUpload/", scUpload);
+    getRecentMP3(req, res, "/Users/watsonbeat1/Repo/xLabWatsonBeat/ReaperProjects/", scUpload);
     console.log("GOT HERE");
    //console.log(fullpath);
 });
@@ -579,14 +580,14 @@ function getRecentMP3(req, res, dir, callback) {
 
 
 app.get("/track/custom/generate", function(req, res){
-    getINIandTrack(req, res, "/Users/asundaresan/Desktop/MIDI/", "/Users/asundaresan/Desktop/INI/", getTrack, connectToWatsonBeat);
+    getINIandTrack(req, res, "/Users/watsonbeat1/Repo/xLabWatsonBeat/MIDI", "/Users/watsonbeat1/Repo/xLabWatsonBeat/INI", getTrack, connectToWatsonBeat, callReaper);
     console.log("GOT HERE");
    //console.log(fullpath);
 });
 
 
 
-function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallback) {
+function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallback, reaperCallback) {
 
     var finalPathINI = "";
     var finalTime = "";
@@ -614,14 +615,14 @@ function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallbac
                     // // console.log("------------");
                 }
         })
-        return trackCallback(req, res, dirTrack, finalPathINI, watsonCallback);
+        return trackCallback(req, res, dirTrack, finalPathINI, watsonCallback, reaperCallback);
     })
 
 };
 
 
 
-const getTrack = function(req, res, dirTrack, pathINI, watsonCallback) {
+const getTrack = function(req, res, dirTrack, pathINI, watsonCallback, reaperCallback) {
 
     var finalPathTrack = "";
     var finalTime = "";
@@ -653,18 +654,61 @@ const getTrack = function(req, res, dirTrack, pathINI, watsonCallback) {
                     // console.log("------------");
                 }
         })
-        return watsonCallback(req, res, finalPathTrack, pathINI);
+        return watsonCallback(req, res, finalPathTrack, pathINI, reaperCallback);
     })
 
 };
 
 
-const connectToWatsonBeat = function(req, res, pathTrack, pathINI) {
+const callReaper = function (res, fname ) {
+  console.log("Zip file name:", fname)
 
-    console.log("------------");
-    console.log(pathTrack);
-    console.log(pathINI);
-    console.log("------------");
+  var mp3 = fname.replace ( ".zip", ".mp3")
+
+  var pythonScript = path.join(__dirname, "/../pyscripts/runReaper.py")
+  // + mood + " " + __dirname+"/mp3/"
+  var args = [ fname, path.join(__dirname, "/../zip"), path.join(__dirname, "/../ReaperProjects") ]
+  console.log ("pythonscript:", pythonScript, args)
+  var spawn = require('child_process').spawn;
+  var process1 = spawn('python',[pythonScript, fname, path.join(__dirname, "/../zip"), path.join(__dirname, "/../ReaperProjects")]);
+
+  process1.stdout.pipe(process.stdout);
+
+  var mp3File = path.join(__dirname, "/../ReaperProjects/WatsonBeat-" + fname.replace ( ".zip", ".mp3"))
+
+  process1.stdout.on('data', function(data) {
+    console.log ( "stdout on:", data.toString())
+    //var done = data.toString()
+    var done1 = data
+    //alert ( done1 )
+    if ( done1 == 100 ) {
+      //energyMapSection.displayAudioElementsAndPlay(mp3File)
+      console.log("FINISHED 100");
+      res.redirect("/track/custom/play");
+      //alert ( done1 )
+    }
+  })
+  process1.on('error', function(data){
+    console.log ( "error:", data.toString())
+  })
+  process1.on('close', function(data){
+    console.log("Close", data.toString())
+    //alert(mp3File)
+    console.log("FINISHED SUCCESS WATSON");
+    //res.redirect("/track/custom/play");
+    //res.render("test2");
+    //moodSection.displayAudioElementsAndPlay(mp3File)
+  })
+
+}
+
+
+const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallback) {
+
+    // console.log("------------");
+    // console.log(pathTrack);
+    // console.log(pathINI);
+    // console.log("------------");
 
     //var url = 'http://127.0.0.1:3000/'
     var url = 'http://arlab053.austin.ibm.com:1025/'
@@ -674,32 +718,138 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI) {
         iniFile: fs.createReadStream(pathINI)
     }
 
-    var header = {
-      'User-Agent':'Electron',
-      'range':'bytes=100-',
-    }
-
-    var respStream = request.post({url:url, headers:header, formData: formData})
+    // var header = {
+    //   'User-Agent':'Electron',
+    //   'range':'bytes=100-',
+    // }
 
 
-    respStream.on('error', function(err) {
-        console.log("Error: cannot connect to server: ", err)
-        alert("Error: cannot connect to server")
-        // go back to home page
-        res.redirect("/track/");
+    var fileNum = 0
+    var pythonScript = __dirname + "/pyscripts/getMp3FileId.py"
+    // + mood + " " + __dirname+"/mp3/"
+    var args = [ "WatsonBeat", __dirname + "/../zip/", "zip" ]
+    console.log ("pythonscript:", pythonScript, args)
+    var spawn = require('child_process').spawn;
+    var process1 = spawn('python',[pythonScript, "WatsonBeat", __dirname+"/../zip/", "zip"]);
+
+
+    process1.stdout.on('data', function(data) {
+        console.log("python data:", data.toString())
+        fileNum = parseInt(data.toString()) + 1
+        //console.log ( "fileNum for new Mp3", fileNum)
+        console.log ( "fileNum for new Zip", fileNum)
+    })
+    process1.on('error', function(data){
+        console.log("Error getting mp3 file Id:", data.toString())
+    })
+    process1.on('close', function(data){
+        console.log("Close", data.toString())
+
+        console.log ( "fileNum for new Zip file", fileNum)
+
+        var mp3 = __dirname + "/../mp3/" + "WatsonBeat" + "-" + fileNum.toString() + ".mp3"
+        //var ws = fs.createWriteStream(mp3);
+
+        var fname = "WatsonBeat" + "-" + fileNum.toString() + ".zip"
+        var zip = __dirname + "/../zip/" + "WatsonBeat" + "-" + fileNum.toString() + ".zip"
+        var ws = fs.createWriteStream(zip);
+
+        console.log(formData)
+        console.log ( "New Zip file: ", zip)
+
+        var header = {
+            'User-Agent':'Electron',
+            'range':'bytes=100-',
+        }
+
+        var respStream = request.post({url:url, headers:header, formData: formData})
+        respStream.on('error', function(err) {
+            console.log("Error: cannot connect to server: ", err)
+            alert("Error: cannot connect to server")
+            // go back to home page
+            //document.getElementById("homePage").click()
+            res.redirect("/track/");
+        })
+        respStream.on('response', function(response) {
+            respStream.pipe(ws)
+            console.log("I am here")
+        })
+        respStream.on('end', function () {
+            console.log("piping done")
+            //moodSection.displayAudioElementsAndPlay(mp3,true)
+            return reaperCallback(res, fname)
+        })
     })
 
-    respStream.on('response', function(response) {
-        respStream.pipe(ws)
-        console.log("I am here")
-    })
 
-    respStream.on('end', function () {
-        console.log("piping done....");
-        console.log(".mp3 is saved????");
-        //moodSection.displayAudioElementsAndPlay(mp3,true)
-        res.redirect("/track/custom/play");
-    })
+
+
+
+
+    // var fileNum = 0
+    // var pythonScript = __dirname + "/pyscripts/getMp3FileId.py"
+    // // + mood + " " + __dirname+"/mp3/"
+    // var args = [ mood, __dirname + "/zip/", "zip" ]
+    // console.log ("pythonscript:", pythonScript, args)
+    // var spawn = require('child_process').spawn;
+    // var process1 = spawn('python',[pythonScript, mood, __dirname+"/zip/", "zip"]);
+
+
+    // process1.stdout.on('data', function(data) {
+    //     console.log("python data:", data.toString())
+    //     fileNum = parseInt(data.toString()) + 1
+    //     //console.log ( "fileNum for new Mp3", fileNum)
+    //     console.log ( "fileNum for new Zip", fileNum)
+    // })
+
+    // process1.on('error', function(data){
+    //     console.log("Error getting mp3 file Id:", data.toString())
+    // })
+    // process1.on('close', function(data){
+    // console.log("Close", data.toString())
+
+    // console.log ( "fileNum for new Zip file", fileNum)
+
+    // var mp3 = __dirname + "/mp3/" + mood + "-" + fileNum.toString() + ".mp3"
+    // //var ws = fs.createWriteStream(mp3);
+
+    // var fname = mood + "-" + fileNum.toString() + ".zip"
+    // var zip = __dirname + "/zip/" + mood + "-" + fileNum.toString() + ".zip"
+    // var ws = fs.createWriteStream(zip);
+
+    // console.log(formData)
+    // console.log ( "New Zip file: ", zip)
+
+
+
+
+
+
+
+
+
+    // var respStream = request.post({url:url, headers:header, formData: formData})
+
+
+    // respStream.on('error', function(err) {
+    //     console.log("Error: cannot connect to server: ", err)
+    //     alert("Error: cannot connect to server")
+    //     // go back to home page
+    //     res.redirect("/track/");
+    // })
+
+    // respStream.on('response', function(response) {
+    //     respStream.pipe(ws)
+    //     console.log("I am here")
+    // })
+
+    // respStream.on('end', function () {
+    //     console.log("piping done....");
+    //     console.log(".mp3 is saved????");
+    //     //moodSection.displayAudioElementsAndPlay(mp3,true)
+    //     callReaper()
+    //     //res.redirect("/track/custom/play");
+    // })
 
 
 
@@ -789,5 +939,5 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI) {
 
 var port = process.env.PORT || 1234;
 app.listen(port, function(){
-	logger.info("Listening on http://localhost:" + port + "/web-app-sample.html");
+    logger.info("Listening on http://localhost:" + port + "/web-app-sample.html");
 });
