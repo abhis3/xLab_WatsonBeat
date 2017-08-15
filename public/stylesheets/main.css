@@ -29,14 +29,18 @@
 #belowheader{
   background-image: url("/images/Alex da kid purple.png");
 }
-#podcastgetstarted{height: 436px;	width: 720px;	background-color: #FFF2EB;}
-#royaltygetstarted{height: 436px;	width: 720px;	background-color: #E9F8FF;}
-#podcast-title{height: 36px;	width: 419px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 36px;	text-align: center;}
-#podcast-subtitle{height: 48px;	width: 376px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 24px;	text-align: center;}
-#podcastgetstarted{height: 50px;	width: 144.41px;	border-radius: 100px;	background-color: #4D4D9B;	box-shadow: 0 2px 5px 0 #9B9B9B;}
-#podget-started{height: 23.2px;	width: 85.41px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
-
-
+#podcastgetstarted{margin-top: 165.5px; height: 436px;	width: 720px;	background-color: #FFF2EB;}
+#royaltygetstarted{margin-top: 165.5px; height: 436px;	width: 720px;	background-color: #E9F8FF;}
+#podcast-title{margin-left: auto; margin-right: auto;height: 36px;	width: 419px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 36px;	text-align: center;}
+#podcast-subtitle{margin-left: auto; margin-right: auto; height: 48px;	width: 376px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 24px;	text-align: center;}
+#podget-startedbox{ margin-right: auto;margin-left: auto;height: 50px;	width: 144.41px;	border-radius: 100px;	background-color: #4D4D9B;	box-shadow: 0 2px 5px 0 #9B9B9B;}
+#podget-started{padding-top: 12px;height: 23.2px;	width: 100%;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
+#royalty-title{height: 36px;	width: 546px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 36px;	text-align: center;}
+#royalty-subtitle{margin-left: auto; margin-right: auto; height: 48px;	width: 376px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 24px;	text-align: center;}
+#royget-started{padding-top: 12px; margin-left: auto; margin-right: auto;height: 23.2px;	width: 123px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
+#royget-startedbox{ margin-top: 10px;margin-right: auto;margin-left: auto;height: 50px;	width: 144.41px;	border-radius: 100px;	background-color: #4D4D9B;	box-shadow: 0 2px 5px 0 #9B9B9B;}
+#royletwatson{padding-left: 52px;height: 50px;	width: 299px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 25px;}
+#royoptions{margin-top: 45px; display: flex; margin-left: auto;}
 /*Dashboard Page*/
 
 #top{margin-top: 90px;}
