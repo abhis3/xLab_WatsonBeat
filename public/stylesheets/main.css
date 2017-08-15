@@ -16,7 +16,11 @@
 
 #sign-up { padding-left: 25px; padding-top: 10px; height: 33px; width: 99px; height: 15px;	width: 100px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	line-height: 15px;}
 
+
+
 /*Landing Page*/
+
+
 #welcome {	height: 143px;	width: 692px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 143px;}
 #welcome-description{	height: 72px;	width: 813px;		color: #FFFFFF;font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: 600;	line-height: 36px;}
 #get-startedbox{	height: 50px;	width: 183px;	border-radius: 100px;	background-color: #FFFFFF;	box-shadow: 0 2px 5px 0 #9B9B9B;}
@@ -25,6 +29,66 @@
 #belowheader{
   background-image: url("/images/Alex da kid purple.png");
 }
+
+
+
 /*Dashboard Page*/
+
+#top{margin-top: 90px;}
 #dashboard-label {	height: 33px;	width: 61px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 33px; justify-content: center;}
 #username{margin-top: 23px; height: 23.2px;	width: 150px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 23px; justify-content: center;}
+#searchgrp {display: flex; box-sizing: border-box;	height: 33px;	width: 311px;	border: 1px solid #6969D4;	border-radius: 100px;
+}
+#search{
+  height: 98%;
+  width: 80%;
+  margin-left: 10px;
+  border: none;
+}
+button{
+    border: none;
+    background-color: white;
+}
+#search-btn, #user-btn{
+  border: none;
+  background-color: white;
+}
+#plusicon{
+  display: flex;
+  margin-top: 90px;
+  border-radius: 200px;
+  background-color: #6969D4;
+  color: white;
+  font-family: "IBM Plex Sans";
+  padding-left: 15px;
+  width: 50px;
+  height: 50px;
+}
+#recentlycreatedrow{display: flex; justify-content: space-between; width: 100%;}
+#recently {	margin-top: 90.5px; height: 55px;	width: 665.65px;	color: #586873;	font-family: "IBM Plex Sans";	font-size: 42px;	font-weight: bold;	line-height: 55px;}
+.tracks{
+  width:310px;
+  height:410px;
+  background-color: white;
+  text-align:center;
+}
+#image{
+  width: 310px;
+  height:310px;
+  background-color: gray;
+}
+#containerfortracks{
+  padding-top: 20px;
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+}
+#tracktitles{	height: 34px;	width: 167px;	color: #586873;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 34px;}
+#tags{margin-left: 10px; padding-top: 2px; display: flex; justify-content: center; height: 20px;	width: 60px;	border-radius: 13px;	background-color: #FF7832;}
+#tag-labels{height: 16px;	width: 35.75px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 500;	line-height: 16px;	text-align: center;}
+#tag-container{display: flex;}
+#poptag-container{display: flex; margin-top: 10px;}
+#popular-tags {	margin-left: 73.5px; height: 16px;	width: 97px;	margin-top: 10px;color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 500;	line-height: 16px;}

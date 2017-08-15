@@ -5,12 +5,14 @@
     <link rel = "stylesheet" href = "/stylesheets/main.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel = "stylesheet" href="/stylesheets/carbon.css">
+    <script src="../node_modules/carbon-components/scripts/carbon-components.min.js" type="text/javascript"></script>
+
 </head>
 <body>
-  <header>
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbar-default">
+  <!-- <header> -->
+    <!-- <nav class="navbar navbar-default navbar-fixed-top" id="navbar-default">
       <div class="container-fluid" id="navbar" >
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="container">
 
           <div class="navbar-header">
@@ -22,26 +24,181 @@
 
           </div>
           <div class="nav navbar-nav navbar-right">
-            <h2 id = username>{{name}}</h2>
+            <h2 id = username>{name}</h2>
           </div>
 
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </nav>
-  </header>
+  </header> -->
 
 
-  <div class="container-fluid" style = "padding-top: 200px;" id = "belowheader">
+  <div class="container-fluid" style = "padding-top: 90px;">
       <div class="container">
-        <div class="row" id="top">
-            <div class="col-md-9">
-              <h1 class="title" id="welcome">Watson <span style= "color: #FFA573"> Beat</a></h1>
-                  <h2 class="subhead" id="welcome-description">Tell us about your project and Watson will compose an original tack based off of your needs!</h2>
+        <div class="row" id="top" style="display: flex;">
+          <div class="form-group" id = "searchgrp">
+            <input type="text" class="form-control" placeholder="Search..." id="search">
+            <button onclick="searching()"><span class="glyphicon glyphicon-search" aria-hidden="true" id="search-btn"></span></button>
+          </div>
+          <p id= "popular-tags">Popular Tags</p>
+          <div id ="poptag-container">
+            <div id = "tags">
+              <p id="tag-labels">Chill</p>
             </div>
-            <div class="col-md-3">
-              <!-- <img src="imgs/group.svg" alt="group-icon"> -->
+            <div id = "tags">
+              <p id="tag-labels">Intro</p>
+            </div>
+            <div id = "tags">
+              <p id="tag-labels">Podcast</p>
             </div>
           </div>
+        </div>
+
+        <div class = "row">
+          <div class="col-md-9" id = "recentlycreatedrow">
+            <h1 class="title" id="recently">Recently Created</h1>
+            <div id="plusicon">
+              <h1 style= "margin-top:5px;">+</h1>
+            </div>
+          </div>
+        </div>
+
+        <div id = "containerfortracks">
+          <div class = "tracks" >
+            <div id= "image">
+              <img src = "/images/play.png" style="padding-top: 130px;"></src>
+            </div>
+            <div data-overflow-menu class="bx--overflow-menu" tabindex="0" aria-label="List of options">
+              <svg class="bx--overflow-menu__icon" width="4" height="20" viewBox="0 0 4 20" fill-rule="evenodd">
+                <circle cx="2" cy="2" r="2"></circle>
+                <circle cx="2" cy="10" r="2"></circle>
+                <circle cx="2" cy="18" r="2"></circle>
+              </svg>
+              <ul class="bx--overflow-menu-options">
+                <li class="bx--overflow-menu-options__option">
+                  <button type="button" class="bx--overflow-menu-options__btn">Rename</button>
+                </li>
+                <li class="bx--overflow-menu-options__option">
+                  <button type="button" class="bx--overflow-menu-options__btn">Change Photo</button>
+                </li>
+                <li class="bx--overflow-menu-options__option">
+                  <button type="button" class="bx--overflow-menu-options__btn">Move</button>
+                </li>
+                <li class="bx--overflow-menu-options__option">
+                  <button type="button" class="bx--overflow-menu-options__btn">Delete</button>
+                </li>
+                <li class="bx--overflow-menu-options__option">
+                  <button type="button" class="bx--overflow-menu-options__btn">Share</button>
+                </li>
+              </ul>
+            </div>
+            <h3 id = "tracktitles">Title of Track</h3>
+            <div id ="tag-container">
+              <div id = "tags">
+                <p id="tag-labels">Chill</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Intro</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Podcast</p>
+              </div>
+            </div>
+          </div>
+          <div class = "tracks" >
+            <div id= "image">
+              <img src = "/images/play.png" style="padding-top: 130px;"></src>
+            </div>
+            <h3 id = "tracktitles">Title of Track</h3>
+            <div id ="tag-container">
+              <div id = "tags">
+                <p id="tag-labels">Chill</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Intro</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Podcast</p>
+              </div>
+            </div>
+          </div>
+          <div class = "tracks" >
+            <div id= "image">
+              <img src = "/images/play.png" style="padding-top: 130px;"></src>
+            </div>
+            <h3 id = "tracktitles">Title of Track</h3>
+            <div id ="tag-container">
+              <div id = "tags">
+                <p id="tag-labels">Chill</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Intro</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Podcast</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class = "row">
+          <div class="col-md-9">
+            <h1 class="title" id="recently">Your Tracks</h1>
+          </div>
+        </div>
+        <!-- <div id = "containerfortracks">
+          <div class = "tracks" >
+            <div id= "image">
+              <img src = "/images/play.png" style="padding-top: 130px;"></src>
+            </div>
+            <h3 id = "tracktitles">Title of Track</h3>
+            <div id ="tag-container">
+              <div id = "tags">
+                <p id="tag-labels">Chill</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Intro</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Podcast</p>
+              </div>
+            </div>
+          </div>
+          <div class = "tracks" >
+            <div id= "image">
+              <img src = "/images/play.png" style="padding-top: 130px;"></src>
+            </div>
+            <h3 id = "tracktitles">Title of Track</h3>
+            <div id ="tag-container">
+              <div id = "tags">
+                <p id="tag-labels">Chill</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Intro</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Podcast</p>
+              </div>
+            </div>
+          </div>
+          <div class = "tracks" >
+            <div id= "image">
+              <img src = "/images/play.png" style="padding-top: 130px;"></src>
+            </div>
+            <h3 id = "tracktitles">Title of Track</h3>
+            <div id ="tag-container">
+              <div id = "tags">
+                <p id="tag-labels">Chill</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Intro</p>
+              </div>
+              <div id = "tags">
+                <p id="tag-labels">Podcast</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
 
           <div class="row">
             <div class="col-md-12" style="display: flex; margin-top: 40px;">
