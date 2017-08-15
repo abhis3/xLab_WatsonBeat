@@ -33,8 +33,9 @@ var _ = require('underscore');
 var http = require('http');
 var https = require('https');
 ////
-   
+
 var config = require('../config');
+var isLoggedin = false;
 
 // Below URLs will be used for App ID OAuth flows
 const LANDING_PAGE_URL = "/home";
@@ -59,15 +60,15 @@ app.use(session({
 	secret: "123456",
 	resave: true,
 	saveUninitialized: true
-})); 
+}));
 
 // Use static resources from /samples directory
 app.use(express.static(__dirname + "/../public"));
-app.use(express.static(__dirname + "/../node_modules/carbon-components/css")); 
+app.use(express.static(__dirname + "/../node_modules/carbon-components/css"));
 
 // Configure express application to use passportjs
 app.use(passport.initialize());
-app.use(passport.session()); 
+app.use(passport.session());
 
 userAttributeManager.init({"profilesUrl": 'https://appid-profiles.ng.bluemix.net'});
 
@@ -102,7 +103,7 @@ app.get("/authed/main", (req, res) => {
 app.get("/popup", (req, res) => {
 	console.log("Dis good stuff boi");
 })
- 
+
 // app.get("/test", (req, res) => {
 // 	res.send("TESTTTTT");
 // });
@@ -114,7 +115,7 @@ app.get(LOGIN_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
 	// successRedirect: "/test",
 	forceLogin: true
 }));
- 
+
 // Explicit anonymous login endpoint. Will always redirect browser for anonymous login due to forceLogin: true
 app.get(LOGIN_ANON_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
 	successRedirect: LANDING_PAGE_URL,
@@ -139,7 +140,7 @@ app.get(LOGOUT_URL, function(req, res){
 // In case user is authenticated - a page with current user information will be returned.
 app.get("/dashboard", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
-  
+
     //console.log('user protection BRUHHHHHH');
 
     userAttributeManager.getAllAttributes(accessToken).then(function (attributes) {
@@ -199,7 +200,7 @@ const onGetMixcloudSuccess = function (res, token, filepath) {
       }
     });
 
-    
+
 
     /*
     var formData = {
@@ -253,7 +254,7 @@ app.get("/scUpload", passport.authenticate(WebAppStrategy.STRATEGY_NAME), functi
  // //        //req.end();
  //     });
  // //    //req.end();
-    
+
     //var key = "access_token_mc";
     //getAtt(function(req, res, key) {access_token_mc = attributes});
 
@@ -327,7 +328,7 @@ const scUpload = function (req, res, key, filepath, onSuccess, onFailure) {
 
 //         if (callback && typeof callback === 'function') {
 
-//             callback(null, attributes[key]); 
+//             callback(null, attributes[key]);
 //         }
 //     });
 //     //req.end();
@@ -404,7 +405,7 @@ app.get("/mixcloud/auth", function (req, res) {
             // var holder = (access_token["access_token"]);
             // console.log(holder);
 
-            
+
             ////////////
             //TODO: Check if access_token undefined
             ////////////
@@ -539,7 +540,7 @@ function getRecentMP3(req, res, dir, callback) {
                     if (finalPath === "") {
                         finalPath = fullpath;
                         finalTime = fs.statSync(fullpath).ctime;
-                    }    
+                    }
 
                     if ((fs.statSync(fullpath).ctime) > finalTime) {
                         finalPath = fullpath;
@@ -583,7 +584,7 @@ function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallbac
                     if (finalPathINI === "") {
                         finalPathINI = fullpath;
                         finalTime = fs.statSync(fullpath).ctime;
-                    }    
+                    }
 
                     if ((fs.statSync(fullpath).ctime) > finalTime) {
                         finalPathINI = fullpath;
@@ -621,12 +622,12 @@ const getTrack = function(req, res, dirTrack, pathINI, watsonCallback) {
                     if (finalPathTrack === "") {
                         finalPathTrack = fullpath;
                         finalTime = fs.statSync(fullpath).ctime;
-                    }    
+                    }
 
                     if (count === random) {
                         finalPathTrack = fullpath;
                         finalTime = fs.statSync(fullpath).ctime;
-                    } 
+                    }
 
 
                     count = count + 1;
@@ -678,7 +679,7 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI) {
         respStream.pipe(ws)
         console.log("I am here")
     })
-    
+
     respStream.on('end', function () {
         console.log("piping done....");
         console.log(".mp3 is saved????");

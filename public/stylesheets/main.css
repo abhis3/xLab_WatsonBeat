@@ -29,7 +29,8 @@
 #belowheader{
   background-image: url("/images/Alex da kid purple.png");
 }
-
+#podcastgetstarted{height: 436px;	width: 720px;	background-color: #FFF2EB;}
+#royaltygetstarted{height: 436px;	width: 720px;	background-color: #E9F8FF;}
 
 
 /*Dashboard Page*/
@@ -92,3 +93,9 @@ button{
 #tag-container{display: flex;}
 #poptag-container{display: flex; margin-top: 10px;}
 #popular-tags {	margin-left: 73.5px; height: 16px;	width: 97px;	margin-top: 10px;color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 500;	line-height: 16px;}
+
+
+/*Upload*/
+
+
+#upload{height: 480px;	width: 1035px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 120px;}
