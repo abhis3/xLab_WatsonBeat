@@ -20,7 +20,7 @@
 
 /*Landing Page*/
 
-
+#watson{margin-bottom: 34px;}
 #welcome {	height: 143px;	width: 692px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 143px;}
 #welcome-description{	height: 72px;	width: 813px;		color: #FFFFFF;font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: 600;	line-height: 36px;}
 #get-startedbox{	height: 50px;	width: 183px;	border-radius: 100px;	background-color: #FFFFFF;	box-shadow: 0 2px 5px 0 #9B9B9B;}
@@ -33,14 +33,18 @@
 #royaltygetstarted{margin-top: 165.5px; height: 436px;	width: 720px;	background-color: #E9F8FF;}
 #podcast-title{margin-left: auto; margin-right: auto;height: 36px;	width: 419px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 36px;	text-align: center;}
 #podcast-subtitle{margin-left: auto; margin-right: auto; height: 48px;	width: 376px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 24px;	text-align: center;}
-#podget-startedbox{ margin-right: auto;margin-left: auto;height: 50px;	width: 144.41px;	border-radius: 100px;	background-color: #4D4D9B;	box-shadow: 0 2px 5px 0 #9B9B9B;}
+#podget-startedbox{ margin-top: 53px;margin-right: auto;margin-left: auto;height: 50px;	width: 144.41px;	border-radius: 100px;	background-color: #4D4D9B;	box-shadow: 0 2px 5px 0 #9B9B9B;}
 #podget-started{padding-top: 12px;height: 23.2px;	width: 100%;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
+#podimg{margin-top: 72px; margin-bottom: 32px;margin-left: auto; margin-right: auto;display: flex;justify-content: center;}
+
 #royalty-title{height: 36px;	width: 546px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 36px;	text-align: center;}
 #royalty-subtitle{margin-left: auto; margin-right: auto; height: 48px;	width: 376px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 24px;	text-align: center;}
 #royget-started{padding-top: 12px; margin-left: auto; margin-right: auto;height: 23.2px;	width: 123px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
 #royget-startedbox{ margin-top: 10px;margin-right: auto;margin-left: auto;height: 50px;	width: 144.41px;	border-radius: 100px;	background-color: #4D4D9B;	box-shadow: 0 2px 5px 0 #9B9B9B;}
 #royletwatson{padding-left: 52px;height: 50px;	width: 299px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 25px;}
-#royoptions{margin-top: 45px; display: flex; margin-left: auto;}
+#royoptions{margin-top: 45px; display: flex; margin-left: auto; margin-left: 100px;}
+#royimg{margin-top: 72px; margin-bottom: 32px; margin-left: auto; margin-right: auto; display: flex;justify-content: center;}
+
 /*Dashboard Page*/
 
 #top{margin-top: 90px;}
