@@ -64,7 +64,7 @@ app.use(session({
 
 // Use static resources from /samples directory
 app.use(express.static(__dirname + "/../public"));
-app.use(express.static(__dirname + "/../node_modules/carbon-components/css"));
+app.use(express.static(__dirname + "/../node_modules/carbon-components/"));
 
 // Configure express application to use passportjs
 app.use(passport.initialize());
@@ -93,7 +93,16 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 app.get("/", (req, res) => {
-	res.render('mainPage');
+	let sesh = req.session;
+	let loginstatus = req.session.APPID_AUTH_CONTEXT;
+	console.log("before if clause: " + loginstatus);
+	if(loginstatus!= undefined){
+		loginstatus=true;
+	}else{
+		loginstatus=false;
+	}
+	console.log("after if clause: "+ loginstatus);
+	res.render('mainPage', {isLoggedin : loginstatus});
 });
 
 app.get("/authed/main", (req, res) => {
@@ -173,6 +182,11 @@ function givePointsAndRenderPage(req, res) {
 
     //console.log();
     //res.render('protected', { locals: { data : renderOptions } });
+
+		let sesh = req.session;
+		sesh.isLoggedin = true;
+		// console.log(sesh);
+
     res.render('dashboard', renderOptions);
 
 }
