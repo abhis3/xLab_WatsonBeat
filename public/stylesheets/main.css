@@ -103,3 +103,46 @@ button{
 
 
 #upload{height: 480px;	width: 1035px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 120px;}
+
+
+/*Cognitive*/
+#section-1{
+  background-color: #E9F8FF;
+  padding-top: 172px;
+  padding-bottom:150px;
+}
+#cog-title-1{
+  font-family: "IBM Plex Sans";
+  font-size: 26px;
+  color: #4D4D9B;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+#cog-title{
+  font-family: "IBM Plex Sans";
+  font-size: 26px;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 100px;
+}
+#answer{
+  font-family: "IBM Plex Sans";
+  font-size: 110px;
+  color: #4D4D9B;
+  font-weight: bold;
+}
+#walk-container{
+  padding-top: 100px;
+  background-color: #6969D4;
+}
+#weather-container{
+  padding-top: 100px;
+  background-color: #4D4D9B;
+}
+#weather-container{
+  padding-top: 100px;
+	background-color: #3C3C73;
+}
+#cog-opt-container{
+  padding-bottom: 150px;
+}
