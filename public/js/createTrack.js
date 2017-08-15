@@ -64,6 +64,12 @@ function myFunction(selected) {
 
 }
 
+function myFunction2(value) {
+  mood1 = value;
+  console.log(mood1);
+
+}
+
 
 window.onload = function() {
   Plotly.plot('graph', );
