@@ -61,29 +61,9 @@ function settime(){
 function myFunction(selected) {
   mood1 = selected.options[selected.selectedIndex].value;
   console.log(mood1);
-    // document.getElementById("myDropdown").classList.toggle("show");
-    // document.getElementById("myDropdown").firstChild.data =
 
 }
 
-// function myFunction2(selected) {
-//   mood2 = selected.options[selected.selectedIndex].value;
-//   console.log(mood2);
-//     // document.getElementById("myDropdown2").classList.toggle("show");
-//
-// }
-// function myFunction3(selected) {
-//   mood3 = selected.options[selected.selectedIndex].value;
-//   console.log(mood3);
-//     // document.getElementById("myDropdown3").classList.toggle("show");
-//
-// }
-// function myFunction4(selected) {
-//   mood4 = selected.options[selected.selectedIndex].value;
-//   console.log(mood4);
-//     // document.getElementById("myDropdown4").classList.toggle("show");
-//
-// }
 
 window.onload = function() {
   Plotly.plot('graph', );
@@ -92,9 +72,8 @@ window.onload = function() {
   var data = [{
       x: [1, 2, 3, 4, 5],
       y: [1, 3, 5, 7, 10],
-      // y: ["low", "medium", "high", "low", "medium"],
       line: {simplify: false},
-      // fill: "tonexty",
+      fill: "tonexty",
     }];
 
   var layout = {

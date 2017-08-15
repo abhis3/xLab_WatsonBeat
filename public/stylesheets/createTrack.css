@@ -7,9 +7,14 @@
 g.xtick{
   display: none;
 }
-
+.body{
+  background-color: white;
+}
 #formfortime{
   margin-top: 70px;
+}
+#custom-title{
+  height: 55px;	width: 436px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 42px;	font-weight: bold;	line-height: 55px;
 }
 
 #dropdown1{
