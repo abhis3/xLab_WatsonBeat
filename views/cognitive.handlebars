@@ -1,5 +1,8 @@
 <head>
   <link rel = "stylesheet" href = "/stylesheets/cognitive.css">
+  <script src="/js/cognitive.js" type="text/javascript"></script>
+  <script async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+
 </head>
   <body>
     <div class="container-fluid" id="section-1">
@@ -7,9 +10,9 @@
           <div class="row">
               <div class="col-md-12">
                 <h3 id="cog-title-1">What are you creating?</h3>
-                <h1 id="answer">Transition</h1>
-                <h1 id="answer">Intro or outro song</h1>
-                <h1 id="answer">Background music<h1>
+                <a href= "#walk-container"><h1 onclick="setCogSongLength(15)" id="answer">Transition</h1></a>
+                <a href= "#walk-container"><h1 onclick="setCogSongLength(30)" id="answer">Intro or outro song</h1></a>
+                <a href= "#walk-container"><h1 onclick="setCogSongLength(240)" id="answer">Background music<h1></a>
               </div>
             </div>
           </div>
@@ -25,13 +28,13 @@
 
         <div class="row" id="cog-opt-container">
           <div class="col-md-4">
-            <img src="/Icons/Sprint.png">
+            <a href= "#weather-container"><img onclick="setMood('popfunk')" src="/Icons/Sprint.png"></a>
           </div>
           <div class="col-md-4">
-            <img src="/Icons/Stroll.png">
+            <a href= "#weather-container"><img onclick="setMood('chill')" src="/Icons/Stroll.png"></a>
           </div>
           <div class="col-md-4">
-            <img src="/Icons/Skip.png">
+            <a href= "#weather-container"><img onclick="setMood('reggaepop')" src="/Icons/Skip.png"></a>
           </div>
         </div>
       </div>
@@ -47,13 +50,13 @@
 
         <div class="row" id="cog-opt-container">
           <div class="col-md-4">
-            <img src="/Icons/Rain.png">
+            <a href= "#rollercoaster-container"><img src="/Icons/Rain.png">
           </div>
           <div class="col-md-4">
-            <img src="/Icons/Sunny.png">
+            <a href= "#rollercoaster-container"><img src="/Icons/Sunny.png">
           </div>
           <div class="col-md-4">
-            <img src="/Icons/Thunder.png">
+            <a href= "#rollercoaster-container"><img src="/Icons/Thunder.png">
           </div>
         </div>
       </div>
@@ -69,13 +72,13 @@
 
         <div class="row" id="cog-opt-container">
           <div class="col-md-4">
-            <img src="/Icons/Rollercoaster-1.png">
+            <a href= ""><img id = "roller1" onclick="cogthingshappen1()" src="/Icons/Rollercoaster-1.png">
           </div>
           <div class="col-md-4">
-            <img src="/Icons/Rollercoaster-2.png">
+            <a href= ""><img id = "roller2" onclick="cogthingshappen2()"src="/Icons/Rollercoaster-2.png">
           </div>
           <div class="col-md-4">
-            <img src="/Icons/Rollercoaster-3.png">
+            <a href= ""><img id = "roller3" onclick="cogthingshappen3()"src="/Icons/Rollercoaster-3.png">
           </div>
         </div>
       </div>
