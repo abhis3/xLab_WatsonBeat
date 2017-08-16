@@ -14,17 +14,21 @@ function settime(){
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
-    .attr("x",1420)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x", 990)
+    .attr("y",300)
+    .attr("fill", "#6969D4")
+    .attr("font-family", "IBM Plex Sans")
+    .style("font-size", "26px")
     .text(text);
 
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
-    .attr("x",400)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x",240)
+    .attr("y",300)
+    .attr("fill", "#6969D4")
+    .attr("font-family", "IBM Plex Sans")
+    .style("font-size", "26px")
     .text(function(){
       var minutes = Math.floor(section/60);
       var seconds = Math.floor((section-minutes));
@@ -34,9 +38,11 @@ function settime(){
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
-    .attr("x",750)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x",485)
+    .attr("y",300)
+    .attr("fill", "#6969D4")
+    .attr("font-family", "IBM Plex Sans")
+    .style("font-size", "26px")
     .text(function(){
       var minutes = Math.floor(section2/60);
       var seconds = Math.floor((section2-minutes));
@@ -46,9 +52,11 @@ function settime(){
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
-    .attr("x",1080)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x",745)
+    .attr("y",300)
+    .attr("fill", "#6969D4")
+    .attr("font-family", "IBM Plex Sans")
+    .style("font-size", "26px")
     .text(function(){
       var minutes = Math.floor(section3/60);
       var seconds = Math.floor((section3-minutes));
@@ -107,23 +115,21 @@ window.onload = function() {
 
   Plotly.d3.select("g.yaxislayer-above")
     .append("text")
-    .attr("x",-20)
+    .attr("x",-81)
     .attr("y",30)
-    .style("font-size", "12px")
+    .attr("font-family", "IBM Plex Sans")
+    .attr("fill", "#5A6872")
+    .style("font-size", "14px")
     .text(function(d){return 'High Energy'});
 
-  Plotly.d3.select("g.yaxislayer-above")
-    .append("text")
-    .attr("x",-25)
-    .attr("y",150)
-    .style("font-size", "12px")
-    .text(function(d){return 'Medium Energy'});
 
   Plotly.d3.select("g.yaxislayer-above")
     .append("text")
-    .attr("x",-20)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x",-81)
+    .attr("y",260)
+    .attr("font-family", "IBM Plex Sans")
+    .attr("fill", "#5A6872")
+    .style("font-size", "14px")
     .text(function(d){return 'Low Energy'});
 
   // Plotly.d3.selectAll("g.xtick")();
