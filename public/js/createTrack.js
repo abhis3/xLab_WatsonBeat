@@ -45,7 +45,7 @@ function settime(){
     .style("font-size", "26px")
     .text(function(){
       var minutes = Math.floor(section2/60);
-      var seconds = Math.floor((section2-minutes));
+      var seconds = Math.floor((section2-(minutes*60)));
       return minutes + ":" + seconds;
   });
 
@@ -59,7 +59,7 @@ function settime(){
     .style("font-size", "26px")
     .text(function(){
       var minutes = Math.floor(section3/60);
-      var seconds = Math.floor((section3-minutes));
+      var seconds = Math.floor((section3-(minutes*60)));
       return minutes + ":" + seconds;
   });
 
@@ -86,24 +86,28 @@ window.onload = function() {
 
   var layout = {
         hovermode:'closest',
-        // title:'Customize Your Track',
         titlefont: {
           family: 'HelvNeue Light for IBM',
           size: 47,
           color: 'black'
         },
         yaxis: {
+          linecolor: "#D8D8D8",
+          linewidth: "10px",
           visible: false,
           showscale: true,
           showline: false,
           fixedrange: true
         },
         xaxis: {
+          linecolor: "#D8D8D8",
+          linewidth: "10px",
           visible: true,
           showscale: false,
           showline: false,
           fixedrange: true,
-        }
+        },
+        plot_bgcolor: "#f4f4fc",
      };
   var options = {
        scrollZoom : false,
@@ -112,7 +116,7 @@ window.onload = function() {
   var selectedInfo = [];
 
   Plotly.plot(myPlot, data, layout, options);
-
+  Plotly.d3.selectAll("path.points").attr("d", Plotly.d3.svg.symbol().type("triangle-up"));
   Plotly.d3.select("g.yaxislayer-above")
     .append("text")
     .attr("x",-81)
@@ -137,7 +141,6 @@ window.onload = function() {
   myPlot.on('plotly_hover', function(data){
     selectedInfo = data.points[0];
     console.log("selectedInfo = " + selectedInfo);
-    // hoverInfo.innerHTML = infotext.join('');
   })
   .on('plotly_unhover', function(data){
     console.log("unhover");
@@ -197,7 +200,7 @@ window.onload = function() {
   }
 
   watsonmagic.onclick = function(){
-    totsecs = totsecs *2;
+    totsecs = totsecs;
     var secs = Math.floor(totsecs/4);
     var secs4 = totsecs-(3*secs);
 
