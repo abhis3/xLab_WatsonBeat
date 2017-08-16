@@ -20,6 +20,18 @@
         <div class="row" id="top" style="display: flex;">
           <h1 class="title" id="custom-title">Customize your track</a></h1>
         </div>
+        <div class = "row" id="choose-mood">
+          <h2 id="choose-label">Choose Mood :</h2>
+          <div class="btn-group" role="group" aria-label="...">
+            <button type="button" value="reggaepop" onclick="myFunction2(value)" class="moodbtns">Reggae Pop</button>
+            <button type="button" value="popfunk" onclick="myFunction2(value)" class="moodbtns">Pop Funk</button>
+            <button type="button" value="chill" onclick="myFunction2(value)" class="moodbtns">Chill</button>
+          </div>
+        </div>
+        <div class = "row" id="wrappergraph">
+          <div id = "graph"><div>
+        </div>
+
       </div>
     </div>
     <div id = pageContainer>
@@ -27,18 +39,10 @@
         <input type="text" class="form-control" placeholder="00:00" id="songlength" style = " font-size: 15px; ">
         <button onclick="settime()" id="settime">Set Song Length</button>
       </div>
-      <div id = "wrappergraph" style="position: relative">
+      <!-- <div id = "wrappergraph" style="position: relative">
         <div id="graph"></div>
-        <select id="dropdown1" onchange="myFunction(this);">
-          <option selected value="Please Select">Select Mood</option>
-          <option value="reggaepop">Reggae Pop</option>
-          <option value="popfunk">Pop Funk</option>
-          <option value="chill">Chill</option>
-        </select>
-
-      </div>
+      </div> -->
       <a href = "generate"><button id="generate">Watson Magic Time</button></a>
-      <a href = "/"><button type="button">Home Page</button>
     </div>
   </body>
 </head>

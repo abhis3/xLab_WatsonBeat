@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <script src="/js/dashboard.js" type="text/javascript"></script>
     <link rel = "stylesheet" href = "/stylesheets/main.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel = "stylesheet" href="/stylesheets/carbon.css">
     <script src="/scripts/carbon-components.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
 
-  <div class="container-fluid" style = "padding-top: 90px;">
+  <div class="container-fluid" style = "padding-top: 90px; background-color: white;">
       <div class="container">
         <div class="row" id="top" style="display: flex;">
           <div class="form-group" id = "searchgrp">
@@ -34,9 +39,32 @@
 
         <div class = "row">
           <div class="col-md-9" id = "recentlycreatedrow">
-            <h1 class="title" id="recently">Recently Created</h1>
-            <div id="plusicon">
-              <h1 style= "margin-top:5px;">+</h1>
+            <h1 class="title" id="recently">Your Tracks</h1>
+            <a href="#myModal"><img onclick="addCard()" data-toggle="modal" data-target="#myModal" src="/Icons/Add Icon.png" id="plusicon"></img>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Do you want to work with Watson to customize your own track or let Watson create a composition for you?</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Customize</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Let Watson create.</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
@@ -44,67 +72,32 @@
         <div id = "containerfortracks">
           <div class = "tracks" >
             <div id= "image">
-              <img src = "/images/play.png" style="padding-top: 130px;"></src>
+                <div data-overflow-menu class="bx--overflow-menu" tabindex="0" aria-label="List of options" style="float:right;">
+                  <svg class="bx--overflow-menu__icon" width="4" height="20" viewBox="0 0 4 20" fill-rule="evenodd" color="white">
+                    <circle cx="2" cy="2" r="2"></circle>
+                    <circle cx="2" cy="10" r="2"></circle>
+                    <circle cx="2" cy="18" r="2"></circle>
+                  </svg>
+                  <ul class="bx--overflow-menu-options">
+                    <li class="bx--overflow-menu-options__option">
+                      <button type="button" class="bx--overflow-menu-options__btn">Rename</button>
+                    </li>
+                    <li class="bx--overflow-menu-options__option">
+                      <button type="button" class="bx--overflow-menu-options__btn">Change Photo</button>
+                    </li>
+                    <li class="bx--overflow-menu-options__option">
+                      <button type="button" class="bx--overflow-menu-options__btn">Move</button>
+                    </li>
+                    <li class="bx--overflow-menu-options__option">
+                      <button type="button" class="bx--overflow-menu-options__btn">Delete</button>
+                    </li>
+                    <li class="bx--overflow-menu-options__option">
+                      <button type="button" class="bx--overflow-menu-options__btn">Share</button>
+                    </li>
+                  </ul>
+                </div>
             </div>
-            <div data-overflow-menu class="bx--overflow-menu" tabindex="0" aria-label="List of options">
-              <svg class="bx--overflow-menu__icon" width="4" height="20" viewBox="0 0 4 20" fill-rule="evenodd">
-                <circle cx="2" cy="2" r="2"></circle>
-                <circle cx="2" cy="10" r="2"></circle>
-                <circle cx="2" cy="18" r="2"></circle>
-              </svg>
-              <ul class="bx--overflow-menu-options">
-                <li class="bx--overflow-menu-options__option">
-                  <button type="button" class="bx--overflow-menu-options__btn">Rename</button>
-                </li>
-                <li class="bx--overflow-menu-options__option">
-                  <button type="button" class="bx--overflow-menu-options__btn">Change Photo</button>
-                </li>
-                <li class="bx--overflow-menu-options__option">
-                  <button type="button" class="bx--overflow-menu-options__btn">Move</button>
-                </li>
-                <li class="bx--overflow-menu-options__option">
-                  <button type="button" class="bx--overflow-menu-options__btn">Delete</button>
-                </li>
-                <li class="bx--overflow-menu-options__option">
-                  <button type="button" class="bx--overflow-menu-options__btn">Share</button>
-                </li>
-              </ul>
-            </div>
-            <h3 id = "tracktitles">Title of Track</h3>
-            <div id ="tag-container">
-              <div id = "tags">
-                <p id="tag-labels">Chill</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Intro</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Podcast</p>
-              </div>
-            </div>
-          </div>
-          <div class = "tracks" >
-            <div id= "image">
-              <img src = "/images/play.png" style="padding-top: 130px;"></src>
-            </div>
-            <h3 id = "tracktitles">Title of Track</h3>
-            <div id ="tag-container">
-              <div id = "tags">
-                <p id="tag-labels">Chill</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Intro</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Podcast</p>
-              </div>
-            </div>
-          </div>
-          <div class = "tracks" >
-            <div id= "image">
-              <img src = "/images/play.png" style="padding-top: 130px;"></src>
-            </div>
-            <h3 id = "tracktitles">Title of Track</h3>
+            <h3 id = "tracktitles">Track 1</h3>
             <div id ="tag-container">
               <div id = "tags">
                 <p id="tag-labels">Chill</p>
@@ -119,64 +112,12 @@
           </div>
         </div>
 
-        <div class = "row">
+        <!-- <div class = "row">
           <div class="col-md-9">
             <h1 class="title" id="recently">Your Tracks</h1>
           </div>
-        </div>
-        <!-- <div id = "containerfortracks">
-          <div class = "tracks" >
-            <div id= "image">
-              <img src = "/images/play.png" style="padding-top: 130px;"></src>
-            </div>
-            <h3 id = "tracktitles">Title of Track</h3>
-            <div id ="tag-container">
-              <div id = "tags">
-                <p id="tag-labels">Chill</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Intro</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Podcast</p>
-              </div>
-            </div>
-          </div>
-          <div class = "tracks" >
-            <div id= "image">
-              <img src = "/images/play.png" style="padding-top: 130px;"></src>
-            </div>
-            <h3 id = "tracktitles">Title of Track</h3>
-            <div id ="tag-container">
-              <div id = "tags">
-                <p id="tag-labels">Chill</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Intro</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Podcast</p>
-              </div>
-            </div>
-          </div>
-          <div class = "tracks" >
-            <div id= "image">
-              <img src = "/images/play.png" style="padding-top: 130px;"></src>
-            </div>
-            <h3 id = "tracktitles">Title of Track</h3>
-            <div id ="tag-container">
-              <div id = "tags">
-                <p id="tag-labels">Chill</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Intro</p>
-              </div>
-              <div id = "tags">
-                <p id="tag-labels">Podcast</p>
-              </div>
-            </div>
-          </div>
         </div> -->
+
 
           <div class="row">
             <div class="col-md-12" style="display: flex; margin-top: 40px;">

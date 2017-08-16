@@ -513,6 +513,9 @@ app.get("/mixcloud/upload", (req, res) => {
     res.render('test2');
 })
 
+app.get("/track/custom/upload", (req, res) => {
+    res.render('upload');
+})
 
 
 

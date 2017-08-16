@@ -27,7 +27,7 @@
 #get-started {	padding-top: 13px; height: 23.2px;	width: 183px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;}
 #learn-more{	margin-left: 40px; padding-bottom: 13px; height: 25px;	width: 299px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 25px;}
 #belowheader{
-  background-image: url("/images/Alex da kid purple.png");
+  background-image: url("/Img/Alex da kid purple.png");
 }
 #podcastgetstarted{margin-top: 165.5px; height: 436px;	width: 720px;	background-color: #FFF2EB;}
 #royaltygetstarted{margin-top: 165.5px; height: 436px;	width: 720px;	background-color: #E9F8FF;}
@@ -67,15 +67,7 @@ button{
   background-color: white;
 }
 #plusicon{
-  display: flex;
-  margin-top: 90px;
-  border-radius: 200px;
-  background-color: #6969D4;
-  color: white;
-  font-family: "IBM Plex Sans";
-  padding-left: 15px;
-  width: 50px;
-  height: 50px;
+  margin-top: 90.5px; height: 44.02px;	width: 45px;
 }
 #recentlycreatedrow{display: flex; justify-content: space-between; width: 100%;}
 #recently {	margin-top: 90.5px; height: 55px;	width: 665.65px;	color: #586873;	font-family: "IBM Plex Sans";	font-size: 42px;	font-weight: bold;	line-height: 55px;}
@@ -88,7 +80,7 @@ button{
 #image{
   width: 310px;
   height:310px;
-  background-color: gray;
+  background-image: url("/Img/Track 1.png");
 }
 #containerfortracks{
   padding-top: 20px;
@@ -99,12 +91,13 @@ button{
   justify-content: space-between;
   margin: auto;
 }
-#tracktitles{	height: 34px;	width: 167px;	color: #586873;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 34px;}
+#tracktitles{	padding-right: 40px; height: 34px;	width: 167px;	color: #586873;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 34px;}
 #tags{margin-left: 10px; padding-top: 2px; display: flex; justify-content: center; height: 20px;	width: 60px;	border-radius: 13px;	background-color: #FF7832;}
 #tag-labels{height: 16px;	width: 35.75px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 500;	line-height: 16px;	text-align: center;}
 #tag-container{display: flex;}
 #poptag-container{display: flex; margin-top: 10px;}
 #popular-tags {	margin-left: 73.5px; height: 16px;	width: 97px;	margin-top: 10px;color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 500;	line-height: 16px;}
+
 
 
 /*Upload*/

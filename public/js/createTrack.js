@@ -1,4 +1,4 @@
-var mood1=""; var mood2 = ""; var mood3 = ""; var mood4 = ""; var totsecs = 0;
+var mood1=""; var totsecs = 0;
 function settime(){
   var text = document.getElementById("songlength").value;
   var res = text.split(":");
@@ -14,17 +14,21 @@ function settime(){
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
-    .attr("x",1420)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x", 990)
+    .attr("y",300)
+    .attr("fill", "#6969D4")
+    .attr("font-family", "IBM Plex Sans")
+    .style("font-size", "26px")
     .text(text);
 
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
-    .attr("x",400)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x",240)
+    .attr("y",300)
+    .attr("fill", "#6969D4")
+    .attr("font-family", "IBM Plex Sans")
+    .style("font-size", "26px")
     .text(function(){
       var minutes = Math.floor(section/60);
       var seconds = Math.floor((section-minutes));
@@ -34,9 +38,11 @@ function settime(){
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
-    .attr("x",750)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x",485)
+    .attr("y",300)
+    .attr("fill", "#6969D4")
+    .attr("font-family", "IBM Plex Sans")
+    .style("font-size", "26px")
     .text(function(){
       var minutes = Math.floor(section2/60);
       var seconds = Math.floor((section2-minutes));
@@ -46,9 +52,11 @@ function settime(){
   Plotly.d3.select("g.xaxislayer-above")
     .append("text")
     .attr("class","xside")
-    .attr("x",1080)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x",745)
+    .attr("y",300)
+    .attr("fill", "#6969D4")
+    .attr("font-family", "IBM Plex Sans")
+    .style("font-size", "26px")
     .text(function(){
       var minutes = Math.floor(section3/60);
       var seconds = Math.floor((section3-minutes));
@@ -58,8 +66,8 @@ function settime(){
 
 }
 
-function myFunction(selected) {
-  mood1 = selected.options[selected.selectedIndex].value;
+function myFunction2(value) {
+  mood1 = value;
   console.log(mood1);
 
 }
@@ -107,23 +115,21 @@ window.onload = function() {
 
   Plotly.d3.select("g.yaxislayer-above")
     .append("text")
-    .attr("x",-20)
+    .attr("x",-81)
     .attr("y",30)
-    .style("font-size", "12px")
+    .attr("font-family", "IBM Plex Sans")
+    .attr("fill", "#5A6872")
+    .style("font-size", "14px")
     .text(function(d){return 'High Energy'});
 
-  Plotly.d3.select("g.yaxislayer-above")
-    .append("text")
-    .attr("x",-25)
-    .attr("y",150)
-    .style("font-size", "12px")
-    .text(function(d){return 'Medium Energy'});
 
   Plotly.d3.select("g.yaxislayer-above")
     .append("text")
-    .attr("x",-20)
-    .attr("y",280)
-    .style("font-size", "12px")
+    .attr("x",-81)
+    .attr("y",260)
+    .attr("font-family", "IBM Plex Sans")
+    .attr("fill", "#5A6872")
+    .style("font-size", "14px")
     .text(function(d){return 'Low Energy'});
 
   // Plotly.d3.selectAll("g.xtick")();
@@ -191,12 +197,13 @@ window.onload = function() {
   }
 
   watsonmagic.onclick = function(){
+    totsecs = totsecs *2;
     var secs = Math.floor(totsecs/4);
     var secs4 = totsecs-(3*secs);
 
     var moodchange = [
       "\r\n",
-      "#composition settings",
+      "\r\n#composition settings",
       "\r\nnumMovements: 4",
       "\r\n",
       "\r\n#movement settings",
@@ -217,62 +224,6 @@ window.onload = function() {
       "\r\n",
       "\r\n#end movement",
       "\r\n"]
-      // "\r\n",
-      // "\r\n",
-      // "\r\n#movement settings",
-      // "\r\nmovementId: 1",
-      // "\r\nmovementDuration: 50",
-      // "\r\n",
-      // "\r\n",
-      // "\r\n#WB Levers",
-      // "\r\nmood: "+ mood2,
-      // "\r\nrhythmSpeed: medium",
-      // "\r\ncomplexity: super_simple",
-      // "\r\n",
-      // "\r\n",
-      // "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(1)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(1)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      // "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(2)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(2)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      // "\r\n",
-      // "\r\n#end movement",
-      // "\r\n",
-      // "\r\n",
-      // "\r\n",
-      // "\r\n#movement settings",
-      // "\r\nmovementId: 2",
-      // "\r\nmovementDuration: 50",
-      // "\r\n",
-      // "\r\n",
-      // "\r\n#WB Levers",
-      // "\r\nmood: "+ mood3,
-      // "\r\nrhythmSpeed: medium",
-      // "\r\ncomplexity: super_simple",
-      // "\r\n",
-      // "\r\n",
-      // "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(2)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(2)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      // "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(3)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(3)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      // "\r\n",
-      // "\r\n#end movement",
-      // "\r\n",
-      // "\r\n",
-      // "\r\n",
-      // "\r\n#movement settings",
-      // "\r\nmovementId: 3",
-      // "\r\nmovementDuration: 50",
-      // "\r\n",
-      // "\r\n",
-      // "\r\n#WB Levers",
-      // "\r\nmood: "+ mood4,
-      // "\r\nrhythmSpeed: medium",
-      // "\r\ncomplexity: super_simple",
-      // "\r\n",
-      // "\r\n",
-      // "\r\nsection:  id:0, tse:'4/4', energy:'"+data2rank(3)+"', duration: '"+secs+"', slope:'gradual or steep', direction: '"+setdirection(3)+"', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      // "\r\nsection:  id:1, tse:'4/4', energy:'"+data2rank(4)+"', duration: '"+secs4+"', slope:'gradual or steep', direction: '"+setdirection(4)+"' mustHaveGroup1: 'rhythm', mustHaveLayer1: 'melody', mustHaveLayer2: 'bass3', mustHaveLayer3: 'drumsKit'",
-      // "\r\n",
-      // "\r\n#end movement",
-      // "\r\n",
-      // "\r\n",
-      // "\r\n"]
     var blob = new Blob(moodchange, {type: "text/plain;charset=utf-8"});
     saveAs(blob, "moods.ini");
 
