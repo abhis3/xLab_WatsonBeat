@@ -61,12 +61,37 @@
         <div class = "row">
           <div class="col-md-9" id = "recentlycreatedrow">
             <h1 class="title" id="recently">Your Tracks</h1>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
             <img onclick="addCard()" src="/Icons/Add Icon.png" id="plusicon"></img>
 <!-- data-toggle="modal" data-target="#myModal"  -->
           </div>
         </div>
-
+        <script id="handlebars-demo" type="text/x-handlebars-template">
+          <div data-overflow-menu class="bx--overflow-menu" tabindex="0" aria-label="List of options" style="float:right;">
+            <svg class="bx--overflow-menu__icon" width="4" height="20" viewBox="0 0 4 20" fill-rule="evenodd" color="white">
+              <circle cx="2" cy="2" r="2"></circle>
+              <circle cx="2" cy="10" r="2"></circle>
+              <circle cx="2" cy="18" r="2"></circle>
+            </svg>
+            <ul class="bx--overflow-menu-options">
+              <li class="bx--overflow-menu-options__option">
+                <button type="button" class="bx--overflow-menu-options__btn">Rename</button>
+              </li>
+              <li class="bx--overflow-menu-options__option">
+                <button type="button" class="bx--overflow-menu-options__btn">Change Photo</button>
+              </li>
+              <li class="bx--overflow-menu-options__option">
+                <button type="button" class="bx--overflow-menu-options__btn">Move</button>
+              </li>
+              <li class="bx--overflow-menu-options__option">
+                <button type="button" class="bx--overflow-menu-options__btn">Delete</button>
+              </li>
+              <li class="bx--overflow-menu-options__option">
+                <button type="button" class="bx--overflow-menu-options__btn">Share</button>
+              </li>
+            </ul>
+          </div>
+        </script>
         <div id = "containerfortracks">
           <div class = "tracks" >
             <div id= "image">

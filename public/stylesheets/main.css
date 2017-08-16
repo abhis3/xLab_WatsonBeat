@@ -88,13 +88,13 @@ button{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: auto;
 }
-#tracktitles{	padding-right: 40px; height: 34px;	width: 167px;	color: #586873;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 34px;}
+#tracktitles{	margin:auto; height: 34px;	width: 167px;	color: #586873;	font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: bold;	line-height: 34px;}
 #tags{margin-left: 10px; padding-top: 2px; display: flex; justify-content: center; height: 20px;	width: 60px;	border-radius: 13px;	background-color: #FF7832;}
 #tag-labels{height: 16px;	width: 35.75px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 500;	line-height: 16px;	text-align: center;}
-#tag-container{display: flex;}
+#tag-container{display: flex; justify-content: center;}
 #poptag-container{display: flex; margin-top: 10px;}
 #popular-tags {	margin-left: 73.5px; height: 16px;	width: 97px;	margin-top: 10px;color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 500;	line-height: 16px;}
 
