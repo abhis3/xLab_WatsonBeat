@@ -64,6 +64,9 @@
 #podcast-subtitle{margin-left: auto; margin-right: auto; height: 48px;	width: 376px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 24px;	text-align: center;}
 #podget-started{
   padding: 13px 30px;
+  width:160px;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 100px;
   box-shadow: 0 2px 5px 0 #9B9B9B;
   background-color: #4D4D9B;
