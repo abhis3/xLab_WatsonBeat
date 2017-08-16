@@ -4,24 +4,38 @@
     <meta charset="utf-8">
     <link rel = "stylesheet" href = "/stylesheets/main.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="/js/play.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
   <div class="container-fluid" style = "padding-top: 123.5px;" id = "belowheader">
       <div class="container">
-        <div class="row" id="top">
+        <div class="row" id="top" style="height: 365px; display:flex; justify-content: center;">
             <div class="col-md-9">
-              <img id="watson" src="/images/Avatar-White.png" style="height:109px; width:117px;"></img>
-              <h1 class="title" id="welcome">Watson <span style= "color: #FFA573"> Beat</a></h1>
-                  <h2 class="subhead" id="welcome-description">Tell us about your project and Watson will compose an original tack based off of your needs!</h2>
+              <h1 class="title" id="welcome" style = "margin:auto">Here is your <span style= "color: #FFA573"> unique</a> track!</h1>
+            </div>
+        </div>
+        <div class= "row" style="margin-top:40px; display:flex; justify-content: center;">
+          <div style="margin-top:auto">
+
+
+           <audio id="music" preload="true">
+             <!-- <source src="/music" type="audio/mpeg"> -->
+            </audio>
+            <div id="audioplayer">
+                <button id="pButton" class="play"></button>
+              <div id="timeline">
+                      <div id="playhead"></div>
+              </div>
             </div>
           </div>
         </div>
-
-          <audio controls>
-            <source src="/music" type="audio/mpeg">
-            Your browser does not support the audio tag.
-          </audio>
+        <div class= "row" style="margin:auto; display:flex; justify-content: center;">
+          <div style="margin-top:auto">
+            <h2 class="subhead" id="welcome-description" style="margin-top:10px;">by Watson Beat</h2>
+            <img id="watson-symbol" src="/images/Avatar-White.png" style="height:109px; width:117px;"></img>
+          </div>
+        </div>
 
           <div class="row">
             <div class="col-md-12" style="display: flex; margin-top: 40px;">
