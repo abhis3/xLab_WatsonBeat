@@ -80,8 +80,10 @@ window.onload = function() {
   var data = [{
       x: [1, 2, 3, 4, 5],
       y: [1, 3, 5, 7, 10],
-      line: {simplify: false},
-      fill: "tonexty",
+      // line: {simplify: false},
+      fill:"tonexty",
+      fillcolor:"#E9F8FF ",
+      marker:{size: 20, symbol:"circle", gradient:{type:"radial", color: "white"}, line:{ width: 5, color: "#6969D4"} } ,
     }];
 
   var layout = {
@@ -101,7 +103,7 @@ window.onload = function() {
         },
         xaxis: {
           linecolor: "#D8D8D8",
-          linewidth: "10px",
+          linewidth: "4px",
           visible: true,
           showscale: false,
           showline: false,
@@ -147,7 +149,6 @@ window.onload = function() {
   });
   var converter = Plotly.d3.scale.quantize()
                          .domain([100, 400])
-                        //  .range(["high","medium","low"])
                          .range([10,9,8,7,6,5,4,3,2,1]);
 
   myPlot.onmousedown = function(data){

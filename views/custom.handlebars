@@ -27,6 +27,12 @@
             <button type="button" value="popfunk" onclick="myFunction2(value)" class="moodbtns">Pop Funk</button>
             <button type="button" value="chill" onclick="myFunction2(value)" class="moodbtns">Chill</button>
           </div>
+          <h2 id="choose-label" style="margin-left: 40px;">Set Length :</h2>
+          <div class="form-group" id="formfortime" >
+            <input type="text" class="form-control" placeholder="00:00" id="songlength" style = " font-size: 15px; ">
+            <button onclick="settime()" id="settime">Set Song Length</button>
+          </div>
+
         </div>
         <div class = "row" id="wrappergraph">
           <div id = "graph"><div>
@@ -35,11 +41,8 @@
       </div>
     </div>
     <div id = pageContainer>
-      <div class="form-group" id="formfortime" >
-        <input type="text" class="form-control" placeholder="00:00" id="songlength" style = " font-size: 15px; ">
-        <button onclick="settime()" id="settime">Set Song Length</button>
-      </div>
-      <button id="generate" data-toggle="modal" data-target="#myModal">Watson Magic Time</button>
+
+      <button id="generate" data-toggle="modal" data-target="#myModal">Create my Track!</button>
       <!-- <button type="button" class="btn btn-info btn-lg" >Open Modal</button> -->
 
         <!-- Modal -->
