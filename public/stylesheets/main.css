@@ -67,15 +67,7 @@ button{
   background-color: white;
 }
 #plusicon{
-  display: flex;
-  margin-top: 90px;
-  border-radius: 200px;
-  background-color: #6969D4;
-  color: white;
-  font-family: "IBM Plex Sans";
-  padding-left: 15px;
-  width: 50px;
-  height: 50px;
+  margin-top: 90.5px; height: 44.02px;	width: 45px;
 }
 #recentlycreatedrow{display: flex; justify-content: space-between; width: 100%;}
 #recently {	margin-top: 90.5px; height: 55px;	width: 665.65px;	color: #586873;	font-family: "IBM Plex Sans";	font-size: 42px;	font-weight: bold;	line-height: 55px;}

@@ -2,11 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <script src="/js/dashboard.js" type="text/javascript"></script>
     <link rel = "stylesheet" href = "/stylesheets/main.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel = "stylesheet" href="/stylesheets/carbon.css">
     <script src="/scripts/carbon-components.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -35,8 +40,31 @@
         <div class = "row">
           <div class="col-md-9" id = "recentlycreatedrow">
             <h1 class="title" id="recently">Your Tracks</h1>
-            <div id="plusicon">
-              <h1 style= "margin-top:5px;">+</h1>
+            <a href="#myModal"><img onclick="addCard()" data-toggle="modal" data-target="#myModal" src="/Icons/Add Icon.png" id="plusicon"></img>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Do you want to work with Watson to customize your own track or let Watson create a composition for you?</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Customize</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Let Watson create.</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
