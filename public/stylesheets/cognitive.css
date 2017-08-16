@@ -33,14 +33,17 @@
 #walk-container{
   padding-top: 100px;
   background-color: #6969D4;
+  padding-bottom: 100px;
 }
 #weather-container{
   padding-top: 100px;
   background-color: #4D4D9B;
+  padding-bottom: 100px;
 }
 #rollercoaster-container{
   padding-top: 100px;
 	background-color: #3C3C73;
+  padding-bottom: 100px;
 }
 #cog-opt-container{
   margin-bottom: 72px;
@@ -58,7 +61,7 @@
     margin-right: 50px;
     margin-bottom: 150px;
 }
-#button-main:hover{
+#button-main{
   background-color:#FFA573;
   color: #4D4D9B;
 }
