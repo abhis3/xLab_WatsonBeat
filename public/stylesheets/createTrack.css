@@ -14,17 +14,51 @@ g.xtick{
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 30px;  color: white; font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: bold;	line-height: 23px;	text-align: center;height: 50px;	width: 216.82px;	border-radius: 100px;	background-color: #4D4D9B;	box-shadow: 0 2px 5px 0 #9B9B9B;
+  padding: 11px 50px;
+  border: 2px solid #4D4D9B;
+  color: white;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 100px;
+  background-color: #4D4D9B;
+  box-shadow: 0 2px 5px 0 #9B9B9B;
+  font-weight: 600;
+}
+#generate:hover{
+  border: 2px solid #4D4D9B;
+  background-color: inherit;
+  color:#4D4D9B;
 }
 .moodbtns{
-  	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 15px;	font-weight: 400;	line-height: 16px;	text-align: center; height: 24px;	width: 100px;	border-radius: 13px;	background-color: #FF7832;
+  	color: #FFFFFF;
+    font-family: "IBM Plex Sans";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: center;
+    padding: 5px 13px;
+    border-radius: 13px;
+    background-color: #FF7832;
+    margin-right: 5px;
 }
-
+.moodbtns:hover, .moodbtns:active{
+  opacity: .5;
+}
 #choose-mood{
   display: flex;
   margin-top: 41px;
+  padding-left: 0;
 }
-#choose-label{height: 16px;	width: 127px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 16px;}
+#choose-label{
+  color: #4D4D9B;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 15px;
+  display: inline;
+}
 /*#formfortime{
   margin-top: 70px;
 }*/
@@ -41,8 +75,36 @@ g.xtick{
   left: 280px;
 }
 
-
-
+#settime{
+  display: inline;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  color:white;
+  background-color:  #4D4D9B;
+  padding: 2px 15px;
+  border-radius: 50px;
+}
+#settime:hover, #settime:active{
+  opacity: .5;
+}
+#songlength{
+  border-bottom: 2px solid grey;
+  border-radius: 0px;
+  border-top:none;
+  border-left: none;
+  border-right: none;
+  box-shadow: none;
+  padding: 0px;
+  width:35px;
+  display: inline;
+  margin-right: 10px;
+}
+.form-control{
+  height: auto;
+  font-size:16px;
+  color:#4D4D9B;
+  font-weight: 500;
+}
 #pageContainer{
   font-family: "HelvNeue Light for IBM";
   background: white;

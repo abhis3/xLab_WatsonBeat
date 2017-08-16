@@ -20,17 +20,22 @@
         <div class="row" id="top" style="display: flex;">
           <h1 class="title" id="custom-title">Customize your track</a></h1>
         </div>
-        <div class = "row" id="choose-mood">
-          <h2 id="choose-label">Choose Mood :</h2>
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="button" value="reggaepop" onclick="myFunction2(value)" class="moodbtns">Reggae Pop</button>
-            <button type="button" value="popfunk" onclick="myFunction2(value)" class="moodbtns">Pop Funk</button>
-            <button type="button" value="chill" onclick="myFunction2(value)" class="moodbtns">Chill</button>
+        <div class = "row">
+          <div class="col-md-6" id="choose-mood">
+            <h2 id="choose-label">Choose mood:</h2>
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" value="popfunk" onclick="myFunction2(value)" class="moodbtns">Pop funk</button>
+              <button type="button" value="chill" onclick="myFunction2(value)" class="moodbtns">Chill</button>
+              <button type="button" value="reggaepop" onclick="myFunction2(value)" class="moodbtns">Reggae pop</button>
+            </div>
           </div>
-          <h2 id="choose-label" style="margin-left: 40px;">Set Length :</h2>
-          <div class="form-group" id="formfortime" >
-            <input type="text" class="form-control" placeholder="00:00" id="songlength" style = " font-size: 15px; ">
-            <button onclick="settime()" id="settime">Set Song Length</button>
+
+          <div class="col-md-6" id="choose-mood">
+            <h2 id="choose-label">Set length:</h2>
+            <div class="form-group" id="formfortime" >
+              <input type="text" class="form-control" placeholder="0:00" id="songlength">
+              <button onclick="settime()" id="settime"><p>Enter</p></button>
+            </div>
           </div>
 
         </div>
@@ -42,7 +47,7 @@
     </div>
     <div id = pageContainer>
 
-      <button id="generate" data-toggle="modal" data-target="#myModal">Create my Track!</button>
+      <button id="generate" data-toggle="modal" data-target="#myModal">Create track</button>
       <!-- <button type="button" class="btn btn-info btn-lg" >Open Modal</button> -->
 
         <!-- Modal -->
