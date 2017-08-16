@@ -24,6 +24,12 @@
   color: #4D4D9B;
   font-weight: bold;
 }
+#answer-container:hover, #answer-container:focus{
+  text-decoration: none;
+}
+#opt:hover, #answer:hover{
+  opacity: .5;
+}
 #walk-container{
   padding-top: 100px;
   background-color: #6969D4;
