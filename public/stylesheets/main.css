@@ -41,7 +41,6 @@
   border:2px solid white;
   background-color: inherit;
   color:white;
-  font-weight: 500;
 }
 #learn-more{	margin-left: 40px; padding-bottom: 13px; height: 25px;	width: 299px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 25px;}
 #belowheader{
@@ -61,7 +60,19 @@
   font-weight: 600;
   line-height: 36px;
   text-align: center;}
-#podcast-subtitle{margin-left: auto; margin-right: auto; height: 48px;	width: 376px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 24px;	text-align: center;}
+#podcast-subtitle{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  color: #4D4D9B;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  padding-left: 20%;
+  padding-right: 20%;
+}
 #podget-started{
   padding: 13px 30px;
   width:160px;
@@ -78,6 +89,16 @@
   text-align: center;
   margin-top: 45px;
   margin-bottom: 72px;
+  border:2px solid #4D4D9B;
+}
+#podget-started-container:hover{
+  text-decoration: none;
+}
+#podget-started:hover{
+  text-decoration: none;
+  border:2px solid #4D4D9B;
+  background-color: inherit;
+  color:#4D4D9B;
 }
 #podimg{margin-top: 72px; margin-bottom: 32px;margin-left: auto; margin-right: auto;display: flex;justify-content: center;}
 
@@ -89,7 +110,19 @@
   line-height: 36px;
   text-align: center;
 }
-#royalty-subtitle{margin-left: auto; margin-right: auto; height: 48px;	width: 376px;	color: #4D4D9B;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 24px;	text-align: center;}
+#royalty-subtitle{
+  margin-left: auto;
+  margin-right: auto;
+  color: #4D4D9B;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  padding-left: 20%;
+  padding-right: 20%;
+  margin-top: 10px;
+}
 #royget-started{
   padding: 13px 30px;
   border-radius: 100px;
@@ -123,7 +156,7 @@
 
 /*Dashboard Page*/
 
-#top{margin-top: 90px;}
+#top{margin-top: 50px;}
 #dashboard-label {	height: 33px;	width: 61px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 33px; justify-content: center;}
 #username{margin-top: 23px; height: 23.2px;	width: 150px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 23px; justify-content: center;}
 #searchgrp {display: flex; box-sizing: border-box;	height: 33px;	width: 311px;	border: 1px solid #6969D4;	border-radius: 100px;
