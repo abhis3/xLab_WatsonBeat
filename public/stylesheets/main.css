@@ -12,10 +12,22 @@
   height: 30px;	width: 157px;	color: #5A6872;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 15px;
 }
 
-#signuprect{ margin-top: 16px; height: 33px;	width: 99px;	border: 1px solid #6969D4;	border-radius: 100px; }
+#signuprect{ margin-top: 16px; height: 33px;	width: 99px; }
 
-#sign-up { padding-left: 25px; padding-top: 10px; height: 33px; width: 99px; height: 15px;	width: 100px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	line-height: 15px;}
-
+#sign-up {
+  height: 33px;
+  color: #4D4D9B;
+  font-family: "IBM Plex Sans";
+  font-size: 12px;
+  line-height: 15px;
+  border: 1px solid #4D4D9B;
+  border-radius: 100px;
+  text-align: center;
+  padding-top: 8px;
+}
+#sign-up:hover{
+  text-decoration: none;
+}
 
 
 /*Landing Page*/
@@ -24,7 +36,7 @@
 #welcome {	height: 143px;	width: 692px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 143px;margin-bottom: 0px;}
 #welcome-description{	color: #FFFFFF;font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: 500;	line-height: 36px;margin-top: 0px;}
 #get-started {
-  padding: 13px 50px;
+  padding: 11px 50px;
   color: #4D4D9B;
   font-family: "IBM Plex Sans";
   font-size: 16px;
@@ -74,7 +86,7 @@
   padding-right: 20%;
 }
 #podget-started{
-  padding: 13px 30px;
+  padding: 11px 30px;
   width:160px;
   margin-left: auto;
   margin-right: auto;
@@ -124,7 +136,7 @@
   margin-top: 10px;
 }
 #royget-started{
-  padding: 13px 30px;
+  padding: 11px 30px;
   border-radius: 100px;
   box-shadow: 0 2px 5px 0 #9B9B9B;
   background-color: #4D4D9B;
@@ -136,8 +148,14 @@
   font-weight: 600;
   line-height: 23px;
   text-align: center;
+  border:2px solid #4D4D9B;
 }
-
+#royget-started:hover{
+  text-decoration: none;
+  border:2px solid #4D4D9B;
+  background-color: inherit;
+  color:#4D4D9B;
+}
 #royletwatson{
   padding-left: 50px;
   color: #4D4D9B;
@@ -150,7 +168,10 @@
 #royoptions{
   margin-top: 45px;
   display: flex;
-  margin-bottom: 72px;
+  margin-bottom: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width:400px;
 }
 #royimg{margin-top: 72px; margin-bottom: 32px; margin-left: auto; margin-right: auto; display: flex;justify-content: center;}
 

@@ -29,6 +29,7 @@ var FormData = require('form-data');
 var fs = require('fs');
 var request = require('request');
 var _ = require('underscore');
+var ejs = require('ejs');
 
 ////
 var http = require('http');
@@ -65,6 +66,8 @@ app.use(session({
 // Use static resources from /samples directory
 app.use(express.static(__dirname + "/../public"));
 app.use(express.static(__dirname + "/../node_modules/carbon-components/"));
+app.use(express.static(__dirname + "/../ReaperProjects"));
+
 
 // Configure express application to use passportjs
 app.use(passport.initialize());
@@ -504,7 +507,22 @@ app.get("/track/custom/play", (req, res) => {
 app.get("/mixcloud/failure", (req, res) => {
     res.render('mcFailure');
 })
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+//var filepath = path.join(__dirname, 'Paradise.m4a');
+
+app.get('/music', function(req, res) {
+    res.set({'Content-Type': 'audio/mpeg'});
+    var readStream = fs.createReadStream("/Users/watsonbeat1/Repo/xLabWatsonBeat/ReaperProjects/WatsonBeat-Track-0.mp3");
+    readStream.pipe(res);
+})
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
