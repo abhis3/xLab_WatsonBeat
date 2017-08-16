@@ -3,9 +3,9 @@ function addCard(){
   var tracks = document.createElement("div");
   tracks.className = "tracks";
   var img = document.createElement("div");
-  img.className = "image";
+  img.id = "image";
   var title = document.createElement("h3");
-  title.id = "titletracks";
+  title.id = "tracktitles";
   title.innerHTML = "Title Track";
   var tagcont = document.createElement("div");
   tagcont.id= "tag-container";

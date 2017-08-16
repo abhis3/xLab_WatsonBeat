@@ -24,6 +24,12 @@
   color: #4D4D9B;
   font-weight: bold;
 }
+#answer-container:hover, #answer-container:focus{
+  text-decoration: none;
+}
+#opt:hover, #answer:hover{
+  opacity: .5;
+}
 #walk-container{
   padding-top: 100px;
   background-color: #6969D4;
@@ -37,5 +43,33 @@
 	background-color: #3C3C73;
 }
 #cog-opt-container{
-  padding-bottom: 150px;
+  margin-bottom: 72px;
+}
+#button-main{
+    border: none;
+    background-color: white;
+    padding: 13px 50px;
+  	color: #4D4D9B;
+    font-family: "IBM Plex Sans";
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 100px;
+    box-shadow: 0 2px 5px 0 #5A6872;
+    margin-right: 50px;
+    margin-bottom: 150px;
+}
+#button-main:hover{
+  background-color:#FFA573;
+  color: #4D4D9B;
+}
+#button-container{
+  background-color: inherit;
+}
+#button-container:focus{
+  outline: none;
+  border: none;
+  opacity: .5;
+}
+#button-container:hover{
+  opacity: .5;
 }
