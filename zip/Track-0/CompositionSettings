@@ -1,0 +1,10 @@
+Movement 0 type promo NumSections 2 Mood chill
+SectionNum 0 NumPhrases 2 NumChords 4 tempo 120 tse 4/4
+PhraseNum 0 StartClk 0 EndClk 7680 Density 4 Layers ['drumsKit','rightPiano2','hiStrings','bass3','notationLP','notationRP']
+PhraseNum 1 StartClk 7680 EndClk 15360 Density 4 Layers ['drumsKit','rightPiano2','hiStrings','bass3','notationLP','notationRP']
+SectionLayers ['drumsKit','rightPiano2','hiStrings','bass3','notationLP','notationRP']
+SectionNum 1 NumPhrases 2 NumChords 4 tempo 120 tse 4/4
+PhraseNum 0 StartClk 15360 EndClk 23040 Density 5 Layers ['drumsKit','rightPiano','bass3','brassRhythms','mel5','notationLP','notationRP']
+PhraseNum 1 StartClk 23040 EndClk 30720 Density 5 Layers ['drumsKit','rightPiano','bass3','brassRhythms','mel5','notationLP','notationRP']
+SectionLayers ['drumsKit','rightPiano','bass3','brassRhythms','mel5','notationLP','notationRP']
+

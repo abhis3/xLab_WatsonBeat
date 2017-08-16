@@ -1,0 +1,10 @@
+Movement 0 type promo NumSections 2 Mood popfunk
+SectionNum 0 NumPhrases 2 NumChords 4 tempo 120 tse 4/4
+PhraseNum 0 StartClk 0 EndClk 7680 Density 6 Layers ['drumsKit','rightPiano2','mel5','bass2','bass3','midStrings','notationLP','notationRP']
+PhraseNum 1 StartClk 7680 EndClk 15360 Density 8 Layers ['drumsKit','rightPiano2','mel5','bass2','bass3','midStrings','rightPiano','rhythmChords','notationLP','notationRP']
+SectionLayers ['drumsKit','rightPiano2','mel5','bass2','bass3','midStrings','rightPiano','rhythmChords','notationLP','notationRP']
+SectionNum 1 NumPhrases 2 NumChords 4 tempo 120 tse 4/4
+PhraseNum 0 StartClk 15360 EndClk 23040 Density 6 Layers ['drumsKit','rightPiano2','mel5','bass2','bass3','rightPiano','notationLP','notationRP']
+PhraseNum 1 StartClk 23040 EndClk 30720 Density 6 Layers ['drumsKit','rightPiano2','mel5','bass2','bass3','rightPiano','notationLP','notationRP']
+SectionLayers ['drumsKit','rightPiano2','mel5','bass2','bass3','rightPiano','notationLP','notationRP']
+
