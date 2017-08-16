@@ -93,16 +93,16 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 app.get("/", (req, res) => {
-	let sesh = req.session;
-	let loginstatus = req.session.APPID_AUTH_CONTEXT;
-	console.log("before if clause: " + loginstatus);
-	if(loginstatus!= undefined){
-		loginstatus=true;
-	}else{
-		loginstatus=false;
-	}
-	console.log("after if clause: "+ loginstatus);
-	res.render('mainPage', {isLoggedin : loginstatus});
+    let sesh = req.session;
+    let loginstatus = req.session.APPID_AUTH_CONTEXT;
+    console.log("before if clause: " + loginstatus);
+    if(loginstatus!= undefined){
+        loginstatus=true;
+    }else{
+        loginstatus=false;
+    }
+    console.log("after if clause: "+ loginstatus);
+    res.render('mainPage', {isLoggedin : loginstatus});
 });
 
 app.get("/authed/main", (req, res) => {
@@ -183,9 +183,9 @@ function givePointsAndRenderPage(req, res) {
     //console.log();
     //res.render('protected', { locals: { data : renderOptions } });
 
-		let sesh = req.session;
-		sesh.isLoggedin = true;
-		// console.log(sesh);
+        let sesh = req.session;
+        sesh.isLoggedin = true;
+        // console.log(sesh);
 
     res.render('dashboard', renderOptions);
 
@@ -583,17 +583,29 @@ function getRecentMP3(req, res, dir, callback) {
 
 
 app.get("/track/custom/generate", function(req, res){
-    getINIandTrack(req, res, "/Users/watsonbeat1/Repo/xLabWatsonBeat/MIDI", "/Users/watsonbeat1/Repo/xLabWatsonBeat/INI", getTrack, connectToWatsonBeat, callReaper);
+    getINIandTrack(req, res, "/Users/watsonbeat1/Repo/xLabWatsonBeat/MIDI", "/Users/watsonbeat1/Repo/xLabWatsonBeat/INI", getTrack, connectToWatsonBeat, callReaper, "/track/custom/play");
+    console.log("GOT HERE");
+   //console.log(fullpath);
+});
+
+
+app.get("/track/cognitive/generate", function(req, res){
+    getINIandTrack(req, res, "/Users/watsonbeat1/Repo/xLabWatsonBeat/MIDI", "/Users/watsonbeat1/Repo/xLabWatsonBeat/INI", getTrack, connectToWatsonBeat, callReaper, "/track/cognitive/play");
     console.log("GOT HERE");
    //console.log(fullpath);
 });
 
 
 
-function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallback, reaperCallback) {
+function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallback, reaperCallback, redirectAfter) {
 
     var finalPathINI = "";
     var finalTime = "";
+
+    var currentTime = new Date().getTime();
+
+    while (currentTime + 1000 >= new Date().getTime()) {
+    }
 
     fs.readdir(dirINI,function(err, list){
         list.forEach(function(file){
@@ -618,14 +630,14 @@ function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallbac
                     // // console.log("------------");
                 }
         })
-        return trackCallback(req, res, dirTrack, finalPathINI, watsonCallback, reaperCallback);
+        return trackCallback(req, res, dirTrack, finalPathINI, watsonCallback, reaperCallback, redirectAfter);
     })
 
 };
 
 
 
-const getTrack = function(req, res, dirTrack, pathINI, watsonCallback, reaperCallback) {
+const getTrack = function(req, res, dirTrack, pathINI, watsonCallback, reaperCallback, redirectAfter) {
 
     var finalPathTrack = "";
     var finalTime = "";
@@ -657,13 +669,13 @@ const getTrack = function(req, res, dirTrack, pathINI, watsonCallback, reaperCal
                     // console.log("------------");
                 }
         })
-        return watsonCallback(req, res, finalPathTrack, pathINI, reaperCallback);
+        return watsonCallback(req, res, finalPathTrack, pathINI, reaperCallback, redirectAfter);
     })
 
 };
 
 
-const callReaper = function (res, fname ) {
+const callReaper = function (res, fname, redirectAfter) {
   console.log("Zip file name:", fname)
 
   var mp3 = fname.replace ( ".zip", ".mp3")
@@ -687,7 +699,7 @@ const callReaper = function (res, fname ) {
     if ( done1 == 100 ) {
       //energyMapSection.displayAudioElementsAndPlay(mp3File)
       console.log("FINISHED 100");
-      res.redirect("/track/custom/play");
+      res.redirect(redirectAfter);
       //alert ( done1 )
     }
   })
@@ -706,7 +718,7 @@ const callReaper = function (res, fname ) {
 }
 
 
-const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallback) {
+const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallback, redirectAfter) {
 
     // console.log("------------");
     // console.log(pathTrack);
@@ -730,10 +742,10 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallbac
     var fileNum = 0
     var pythonScript = __dirname + "/pyscripts/getMp3FileId.py"
     // + mood + " " + __dirname+"/mp3/"
-    var args = [ "WatsonBeat", __dirname + "/../zip/", "zip" ]
+    var args = [ "Track", __dirname + "/../zip/", "zip" ]
     console.log ("pythonscript:", pythonScript, args)
     var spawn = require('child_process').spawn;
-    var process1 = spawn('python',[pythonScript, "WatsonBeat", __dirname+"/../zip/", "zip"]);
+    var process1 = spawn('python',[pythonScript, "Track", __dirname+"/../zip/", "zip"]);
 
 
     process1.stdout.on('data', function(data) {
@@ -750,11 +762,11 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallbac
 
         console.log ( "fileNum for new Zip file", fileNum)
 
-        var mp3 = __dirname + "/../mp3/" + "WatsonBeat" + "-" + fileNum.toString() + ".mp3"
+        var mp3 = __dirname + "/../mp3/" + "Track" + "-" + fileNum.toString() + ".mp3"
         //var ws = fs.createWriteStream(mp3);
 
-        var fname = "WatsonBeat" + "-" + fileNum.toString() + ".zip"
-        var zip = __dirname + "/../zip/" + "WatsonBeat" + "-" + fileNum.toString() + ".zip"
+        var fname = "Track" + "-" + fileNum.toString() + ".zip"
+        var zip = __dirname + "/../zip/" + "Track" + "-" + fileNum.toString() + ".zip"
         var ws = fs.createWriteStream(zip);
 
         console.log(formData)
@@ -780,7 +792,7 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallbac
         respStream.on('end', function () {
             console.log("piping done")
             //moodSection.displayAudioElementsAndPlay(mp3,true)
-            return reaperCallback(res, fname)
+            return reaperCallback(res, fname, redirectAfter)
         })
     })
 
@@ -942,5 +954,5 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallbac
 
 var port = process.env.PORT || 1234;
 app.listen(port, function(){
-    logger.info("Listening on http://localhost:" + port + "/web-app-sample.html");
+    logger.info("Listening on http://localhost:" + port + "/");
 });
