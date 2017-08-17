@@ -30,6 +30,7 @@ g.xtick{
   border: 2px solid #4D4D9B;
   background-color: inherit;
   color:#4D4D9B;
+  text-decoration: none;
 }
 .moodbtns{
   	color: #FFFFFF;
