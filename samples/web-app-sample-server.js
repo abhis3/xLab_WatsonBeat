@@ -1,16 +1,4 @@
-/*
- Copyright 2017 IBM Corp.
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- */
- //
+//.
 
 const express = require("express");
 const session = require("express-session");
@@ -30,12 +18,8 @@ var fs = require('fs');
 var request = require('request');
 var _ = require('underscore');
 var ejs = require('ejs');
-
-////
 var http = require('http');
 var https = require('https');
-////
-
 var config = require('../config');
 
 // Below URLs will be used for App ID OAuth flows
@@ -48,9 +32,10 @@ const ROP_LOGIN_PAGE_URL = "/ibm/bluemix/appid/rop/login";
 
 app.use(helmet());
 app.use(flash());
+
+//Can be replaced with any other template framework or plain HTML
 app.set('views', path.join(__dirname, "/../views"));
 app.set('view engine', 'handlebars');
-//app.engine('.html', require('handlebars'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 
 // Setup express application to use express-session middleware
@@ -76,6 +61,8 @@ app.use(passport.session());
 userAttributeManager.init({"profilesUrl": 'https://appid-profiles.ng.bluemix.net'});
 
 // Configure passportjs to use WebAppStrategy
+// Config file for project is probably with whoever gave you this code
+// or just make your own.
 passport.use(new WebAppStrategy({
     tenantId: config['tenantId'],
     clientId: config['clientId'],
@@ -95,6 +82,7 @@ passport.deserializeUser(function(obj, cb) {
     cb(null, obj);
 });
 
+// Root render and sets boolean for eventual top toolbar customization.
 app.get("/", (req, res) => {
     let sesh = req.session;
     let loginstatus = req.session.APPID_AUTH_CONTEXT;
@@ -112,13 +100,9 @@ app.get("/authed/main", (req, res) => {
     res.render('test2');
 })
 
-app.get("/popup", (req, res) => {
-    console.log("Dis good stuff boi");
-})
-
-// app.get("/test", (req, res) => {
-//  res.send("TESTTTTT");
-// });
+// app.get("/popup", (req, res) => {
+//     console.log("Dis good stuff boi");
+// })
 
 // Explicit login endpoint. Will always redirect browser to login widget due to {forceLogin: true}.
 // If forceLogin is set to false redirect to login widget will not occur of already authenticated users.
@@ -149,11 +133,9 @@ app.get(LOGOUT_URL, function(req, res){
 });
 
 // Protected area. If current user is not authenticated - redirect to the login widget will be returned.
-// In case user is authenticated - a page with current user information will be returned.
+// In case user is authenticated - a page with current user information will be returned (dashboard).
 app.get("/dashboard", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
-
-    //console.log('user protection BRUHHHHHH');
 
     userAttributeManager.getAllAttributes(accessToken).then(function (attributes) {
         givePointsAndRenderPage(req, res);
@@ -172,7 +154,7 @@ app.get(ROP_LOGIN_PAGE_URL, function(req, res) {
 });
 
 
-/////////
+// Gets just the user name and renders dashboard with name passed in
 function givePointsAndRenderPage(req, res) {
     //return the protected page with user info
     var email = req.user.email;
@@ -194,6 +176,7 @@ function givePointsAndRenderPage(req, res) {
 
 }
 
+// Callback for successful mixcloud upload. Mixcloud rate limit ~1 upload/hour
 const onGetMixcloudSuccess = function (res, token, filepath) {
     // Do whatever you need to if the token exists.
     //redirect
@@ -246,6 +229,8 @@ const onGetMixcloudSuccess = function (res, token, filepath) {
     //form.append('file', fs.createReadStream(filepath));
 
 };
+
+// Error callback for failure mixcloud upload.
 const onGetMixcloudFailure = function (error) {
     // Do any error handling if the token is not found.
     res.redirect("/mixcloud/login");
@@ -253,6 +238,7 @@ const onGetMixcloudFailure = function (error) {
 
 
 ////////
+// Old Endpoint when Soundcloud was still viable. Pretty sure it does nothing.
 app.get("/scUpload", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
     //var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
 
@@ -303,6 +289,8 @@ app.get("/scUpload", passport.authenticate(WebAppStrategy.STRATEGY_NAME), functi
 });
 
 
+// Callback that uploads if user Mixcloud token is already stored. If not stored, then prompts them to login.
+// TODO: Validate tokens before every call to see if they have been revoked or need to be refreshed.
 const scUpload = function (req, res, key, filepath, onSuccess, onFailure) {
     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
 
@@ -314,10 +302,6 @@ const scUpload = function (req, res, key, filepath, onSuccess, onFailure) {
             onSuccess(res, attributes[key], filepath);
         }
     }).catch((error) => {
-        //redirect
-        //console.log("Caught error from getAtt():");
-        //console.log(error);
-        //onFailure(error);
         res.redirect("/mixcloud/login");
     });
     //req.end();
@@ -354,7 +338,7 @@ const scUpload = function (req, res, key, filepath, onSuccess, onFailure) {
 
 
 
-
+// Testing endpoint. Not used in final product.
 app.get("/testWriteAtt", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
 
@@ -364,7 +348,7 @@ app.get("/testWriteAtt", passport.authenticate(WebAppStrategy.STRATEGY_NAME), fu
     });
 });
 
-
+// Writes value to corresponding key in the profile of an authed user.
 function writeAtt(req, res, key, value) {
     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
 
@@ -374,13 +358,14 @@ function writeAtt(req, res, key, value) {
 };
 
 
-
+// Explicit Mixcloud login endpoint. Make sure to use URI encoder for the redirect link.
 app.get("/mixcloud/login", (req, res) => {
     //res.render('mixCloudLogin');
     res.redirect("https://www.mixcloud.com/oauth/authorize?client_id=E4XqsKQQHnsmYhqXTY&redirect_uri=http%3A%2F%2Flocalhost%3A1234%2Fmixcloud%2Fauth");
 })
 
 
+// If successful Mixcloud auth, writes token to user profile. Can only be achieved once the user has first logged through AppID.
 app.get("/mixcloud/auth", function (req, res) {
     //emitter.setMaxListeners(11);
     const code = req.query.code;
@@ -461,7 +446,7 @@ app.get("/mixcloud/auth", function (req, res) {
 
 //<INPUT type="button" id="button-id" value="Save" onclick="this.disabled=true;load_page('form-id');return false;" />
 
-
+//Test endpoint. Does nothing now.
 function testPostHelper(req, res) {
     //return the protected page with user info
     var email = req.user.email;
@@ -481,8 +466,6 @@ function testPostHelper(req, res) {
 
 
 
-
-/////////////////////////////////////////////////////////////////////
 app.get("/track/", (req, res) => {
     res.render('track');
 })
@@ -507,11 +490,11 @@ app.get("/track/custom/play", (req, res) => {
 app.get("/mixcloud/failure", (req, res) => {
     res.render('mcFailure');
 })
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//var filepath = path.join(__dirname, 'Paradise.m4a');
-
+// Endpoint for audio player into browser
+// Path is hardcoded as to limit the number of # of files stored on the user's machine.
+// Also this code only worked on one specific laptop at the time.
+// TODO: Replace hardcoded path with most recent .mp3 from user specified directory
 app.get('/music', function(req, res) {
     res.set({'Content-Type': 'audio/mpeg'});
     var readStream = fs.createReadStream("/Users/watsonbeat1/Repo/xLabWatsonBeat/ReaperProjects/WatsonBeat-Track-0.mp3");
@@ -519,17 +502,11 @@ app.get('/music', function(req, res) {
 })
 
 
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//TODO
+// Test endpoint
 app.get("/mixcloud/upload", (req, res) => {
     res.render('test2');
 })
+
 
 app.get("/track/custom/upload", (req, res) => {
     res.render('upload');
@@ -537,13 +514,13 @@ app.get("/track/custom/upload", (req, res) => {
 
 
 
-
+// Endpoint to upload the most recent .mp3 file in the specified directory to mixCloud.
+// TODO: Put in path as specified by the user (not hardcoded).
 app.get("/scUploadFinal", passport.authenticate(WebAppStrategy.STRATEGY_NAME), function(req, res){
     getRecentMP3(req, res, "/Users/watsonbeat1/Repo/xLabWatsonBeat/ReaperProjects/", scUpload);
     console.log("GOT HERE");
    //console.log(fullpath);
 });
-
 
 
 function getRecentMP3(req, res, dir, callback) {
@@ -599,7 +576,11 @@ function getRecentMP3(req, res, dir, callback) {
 
 
 
-
+// Endpoints that do a POST request to Watson Beat, gets and puts the MIDI piles into a ZIP, renders them into reaper, and then generates the .mp3
+// In retrospect, should have done all of this with promises instead of this many callbacks, so sorry if you're reading this because I totally blanked when I wrote this
+// and 100% meant to go back and fix this but time constraints.
+// Chrome downloads the .INI file to the INI folder and the MIDI upload didn't work so I just chose a random one to send to Watson from the MIDI folder.
+// Ideally, don't store the .INI file at all client-side but so much was stored client-side that we kinda just rolled with it. Sorry.
 app.get("/track/custom/generate", function(req, res){
     getINIandTrack(req, res, "/Users/watsonbeat1/Repo/xLabWatsonBeat/MIDI", "/Users/watsonbeat1/Repo/xLabWatsonBeat/INI", getTrack, connectToWatsonBeat, callReaper, "/track/custom/play");
     console.log("GOT HERE");
@@ -614,7 +595,7 @@ app.get("/track/cognitive/generate", function(req, res){
 });
 
 
-
+// Gets most recent .INI file in a directory
 function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallback, reaperCallback, redirectAfter) {
 
     var finalPathINI = "";
@@ -654,7 +635,7 @@ function getINIandTrack(req, res, dirTrack, dirINI, trackCallback, watsonCallbac
 };
 
 
-
+// Gets most recent .mp3 file in a directory
 const getTrack = function(req, res, dirTrack, pathINI, watsonCallback, reaperCallback, redirectAfter) {
 
     var finalPathTrack = "";
@@ -692,7 +673,8 @@ const getTrack = function(req, res, dirTrack, pathINI, watsonCallback, reaperCal
 
 };
 
-
+// Calls reaper to compile the MIDI files.
+// NOTE: In /ReaperProjects put those 4 blank files because without it Repaer give's an error and may/may not generate music
 const callReaper = function (res, fname, redirectAfter) {
   console.log("Zip file name:", fname)
 
@@ -716,7 +698,7 @@ const callReaper = function (res, fname, redirectAfter) {
     //alert ( done1 )
     if ( done1 == 100 ) {
       //energyMapSection.displayAudioElementsAndPlay(mp3File)
-      console.log("FINISHED 100");
+      console.log("FINISHED REAPER RENDER");
       res.redirect(redirectAfter);
       //alert ( done1 )
     }
@@ -736,6 +718,7 @@ const callReaper = function (res, fname, redirectAfter) {
 }
 
 
+// POST request tp beat. For now just passing in an INI and MIDI, but it can accept a lot more in the future
 const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallback, redirectAfter) {
 
     // console.log("------------");
@@ -795,6 +778,7 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallbac
             'range':'bytes=100-',
         }
 
+        // Pipes all .MIDI files into a zip so that latr you can just call Repaer on the zip
         var respStream = request.post({url:url, headers:header, formData: formData})
         respStream.on('error', function(err) {
             console.log("Error: cannot connect to server: ", err)
@@ -813,50 +797,6 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallbac
             return reaperCallback(res, fname, redirectAfter)
         })
     })
-
-
-
-
-
-
-    // var fileNum = 0
-    // var pythonScript = __dirname + "/pyscripts/getMp3FileId.py"
-    // // + mood + " " + __dirname+"/mp3/"
-    // var args = [ mood, __dirname + "/zip/", "zip" ]
-    // console.log ("pythonscript:", pythonScript, args)
-    // var spawn = require('child_process').spawn;
-    // var process1 = spawn('python',[pythonScript, mood, __dirname+"/zip/", "zip"]);
-
-
-    // process1.stdout.on('data', function(data) {
-    //     console.log("python data:", data.toString())
-    //     fileNum = parseInt(data.toString()) + 1
-    //     //console.log ( "fileNum for new Mp3", fileNum)
-    //     console.log ( "fileNum for new Zip", fileNum)
-    // })
-
-    // process1.on('error', function(data){
-    //     console.log("Error getting mp3 file Id:", data.toString())
-    // })
-    // process1.on('close', function(data){
-    // console.log("Close", data.toString())
-
-    // console.log ( "fileNum for new Zip file", fileNum)
-
-    // var mp3 = __dirname + "/mp3/" + mood + "-" + fileNum.toString() + ".mp3"
-    // //var ws = fs.createWriteStream(mp3);
-
-    // var fname = mood + "-" + fileNum.toString() + ".zip"
-    // var zip = __dirname + "/zip/" + mood + "-" + fileNum.toString() + ".zip"
-    // var ws = fs.createWriteStream(zip);
-
-    // console.log(formData)
-    // console.log ( "New Zip file: ", zip)
-
-
-
-
-
 
 
 
@@ -892,80 +832,6 @@ const connectToWatsonBeat = function(req, res, pathTrack, pathINI, reaperCallbac
     console.log("------------");
     //res.render("test2");
 }
-
-
-    // var req = request.post({ 'url': url, 'formData': formData }, function (err, resp, body) {
-    //   if (resp.statusCode == 403) {
-    //     console.log(resp.statusCode);
-    //     res.redirect("/mixcloud/failure");
-    //   } else {
-    //     console.log(resp.statusCode);
-    //     res.render('test2');
-    //   }
-    // });
-
-
-
-
-
-
-
-
-
-
-// const scUpload = function (req, res, key, filepath, onSuccess, onFailure) {
-//     var accessToken = req.session[WebAppStrategy.AUTH_CONTEXT].accessToken;
-
-//     //userAttributeManager.getAllAttributes(accessToken).then(function (attributes) { //WORKS
-//     userAttributeManager.getAttribute(accessToken, key).then(function (attributes) { //WORKS
-//         console.log(`single attribute: ${JSON.stringify(attributes)}`);
-
-//         if (onSuccess && typeof onSuccess === 'function') {
-//             onSuccess(res, attributes[key], filepath);
-//         }
-//     }).catch((error) => {
-//         //redirect
-//         //console.log("Caught error from getAtt():");
-//         //console.log(error);
-//         //onFailure(error);
-//         res.redirect("/mixcloud/login");
-//     });
-//     //req.end();
-// };
-
-
-// const onGetMixcloudSuccess = function (res, token, filepath) {
-//     // Do whatever you need to if the token exists.
-//     //redirect
-//     var url = "https://api.mixcloud.com/upload/?access_token=";
-//     url = url.concat(token);
-
-
-//     var formData = {
-//         mp3: fs.createReadStream(filepath),
-//         name: path.basename(filepath, path.extname(filepath))
-//         //my_file: fs.createReadStream(__dirname + '/unicycle.jpg'),
-//     }
-
-//     var req = request.post({ 'url': url, 'formData': formData }, function (err, resp, body) {
-//       if (resp.statusCode == 403) {
-//         console.log(resp.statusCode);
-//         res.redirect("/mixcloud/failure");
-//       } else {
-//         console.log(resp.statusCode);
-//         res.render('test2');
-//       }
-//     });
-
-// };
-// const onGetMixcloudFailure = function (error) {
-//     // Do any error handling if the token is not found.
-//     res.redirect("/mixcloud/login");
-// };
-
-
-
-
 
 
 
