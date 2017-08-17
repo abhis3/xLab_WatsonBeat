@@ -1,10 +1,13 @@
 #audioplayer{
-    width: 480px;
-    height: 60px;
-    margin: 50px auto auto auto;
+  height: 66px;
+  width: 50%;
+  margin-top: 72px;
+  margin-bottom: 40px;
+  margin-left: 15px;
     border: solid;
-    border-radius: 20px;
-    border-color: #FFA573;
+    border-radius: 3px;
+    background-color: white;
+    border-color: white;
 }
 
 #pButton{
@@ -19,26 +22,68 @@
     outline:none;
 }
 
-.play{background: url('/Icons/Play.png') ;}
+.play{background: url('/Icons/Play purple.png') ;}
 .pause{background: url('http://www.alexkatz.me/codepen/img/pause.png') ;}
 
 #timeline{
-    width: 400px;
-    height: 20px;
-    margin-top: 20px;
+    width:500px;
+    height:10px;
+    margin-top: 27px;
     float: left;
-    border-radius: 15px;
-    background: #FFA573;
+    border-radius: 100px;
+    background:#4D4D9B;
 
+}
+#belowheader{
+  background-image: url("/Img/Alex da kid purple.png");
 }
 #playhead{
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    margin-top: 1px;
-    background: white;
+    background:#FFA573;
 }
 
+#button{
+    border: none;
+    background-color: white;
+    padding: 13px 30px;;
+  	color: #4D4D9B;
+    font-family: "IBM Plex Sans";
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 100px;
+    box-shadow: 0 2px 5px 0 #5A6872;
+    margin-right: 50px;
+    border: 2px solid white;
+}
+#button:hover{
+  border: 2px solid white;
+  color:white;
+  background-color: inherit;
+  font-weight: 600;
+}
+
+#button-alt{
+  background-color: inherit;
+  color:white;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+#button-alt:hover{
+  color:#FFA573;
+}
+#not{
+  color:#5A6872;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-weight: 500;
+}
+#orange-text{
+  color:#FFA573;
+}
 #navbar{
   height: 71px;
 }
@@ -74,7 +119,8 @@
 /*Landing Page*/
 
 #watson{margin-bottom: 34px;}
-#welcome {	height: 143px;	width: 692px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 143px;margin-bottom: 0px;}
+#welcome {	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 110px;	font-weight: bold;	line-height: 143px;margin-bottom: 0px;}
+#welcome-sm {	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 100px;	font-weight: bold;	line-height: 130px;margin-bottom: 0px;}
 #welcome-description{	color: #FFFFFF;font-family: "IBM Plex Sans";	font-size: 26px;	font-weight: 500;	line-height: 36px;margin-top: 0px;}
 #get-started {
   padding: 11px 50px;
@@ -96,8 +142,8 @@
   color:white;
 }
 #learn-more{	margin-left: 40px; padding-bottom: 13px; height: 25px;	width: 299px;	color: #FFFFFF;	font-family: "IBM Plex Sans";	font-size: 16px;	font-weight: 600;	line-height: 25px;}
-#belowheader{
-  background-image: url("/Img/Alex da kid purple.png");
+#background{
+  background-color: #4D4D9B;
 }
 #podcastgetstarted{
   	background-color: #FFF2EB;
@@ -203,7 +249,12 @@
   font-family: "IBM Plex Sans";
   font-size: 16px;
   font-weight: 600;
+  text-decoration: underline;
 }
+#royletwatson:hover{
+  color:#FF7832;
+}
+
 #sm-btn-containter{
 }
 #royoptions{
@@ -218,7 +269,7 @@
 
 /*Dashboard Page*/
 
-#top{margin-top: 50px;}
+#top{margin-top: 172px;}
 #dashboard-label {	height: 33px;	width: 61px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 33px; justify-content: center;}
 #username{margin-top: 23px; height: 23.2px;	width: 150px;	color: #6969D4;	font-family: "IBM Plex Sans";	font-size: 12px;	font-weight: 600;	line-height: 23px; justify-content: center;}
 #searchgrp {display: flex; box-sizing: border-box;	height: 33px;	width: 311px;	border: 1px solid #6969D4;	border-radius: 100px;
