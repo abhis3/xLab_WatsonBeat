@@ -23,7 +23,7 @@
 }
 
 .play{background: url('/Icons/Play purple.png') ;}
-.pause{background: url('http://www.alexkatz.me/codepen/img/pause.png') ;}
+.pause{background: url('/Icons/Pause.png') ;}
 
 #timeline{
     width:500px;
