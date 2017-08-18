@@ -1,5 +1,5 @@
 //.
-// To run: node samples/web-app-sample-server.js from root directory
+// To run: node samples/web-app-sample-server.js from root directoryy
 
 const express = require("express");
 const session = require("express-session");
